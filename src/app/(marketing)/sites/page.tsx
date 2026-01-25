@@ -1,24 +1,23 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
+import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: 'Our Sites | GrayCup',
+  title: "Our Sites | GrayCup",
   description:
-    'Explore the informational websites owned and operated by GrayCup, focused on bulk chai, CTC tea education, and loose-leaf tea knowledge.',
-}
+    "Explore the informational websites owned and operated by GrayCup, focused on bulk chai, CTC tea education, and loose-leaf tea knowledge.",
+};
 
 export default function SitesPage() {
   return (
     <main className="mx-auto max-w-5xl px-4 py-16">
       {/* Page Header */}
       <header className="mb-12">
-        <h1 className="text-4xl font-bold text-gray-900">
-          Our Sites
-        </h1>
+        <h1 className="text-4xl font-bold text-gray-900">Our Sites</h1>
         <p className="mt-4 max-w-3xl text-lg text-gray-600">
-          GrayCup operates a group of informational websites focused on different
-          aspects of tea — from bulk chai usage to CTC grading and loose-leaf tea
-          education. All sites listed below are owned and operated by GrayCup.
+          GrayCup operates a group of informational websites focused on
+          different aspects of tea — from bulk chai usage to CTC grading and
+          loose-leaf tea education. All sites listed below are owned and
+          operated by GrayCup.
         </p>
       </header>
 
@@ -26,9 +25,7 @@ export default function SitesPage() {
       <section className="grid gap-8 md:grid-cols-3">
         {/* BulkChai Card */}
         <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h2 className="text-2xl font-semibold text-gray-900">
-            BulkChai
-          </h2>
+          <h2 className="text-2xl font-semibold text-gray-900">BulkChai</h2>
           <p className="mt-3 text-gray-600">
             BulkChai is an informational platform focused on bulk chai usage and
             how chai is consumed at scale across cafés, offices, canteens, and
@@ -53,9 +50,7 @@ export default function SitesPage() {
 
         {/* BulkCTC Card */}
         <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h2 className="text-2xl font-semibold text-gray-900">
-            BulkCTC
-          </h2>
+          <h2 className="text-2xl font-semibold text-gray-900">BulkCTC</h2>
           <p className="mt-3 text-gray-600">
             BulkCTC is dedicated to explaining CTC (Crush, Tear, Curl) tea —
             including grades, particle size, colour output, and consistency in
@@ -80,9 +75,7 @@ export default function SitesPage() {
 
         {/* PureCha Card */}
         <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h2 className="text-2xl font-semibold text-gray-900">
-            PureCha
-          </h2>
+          <h2 className="text-2xl font-semibold text-gray-900">PureCha</h2>
           <p className="mt-3 text-gray-600">
             PureCha focuses on loose-leaf and orthodox tea education, helping
             readers understand tea purity, processing methods, and leaf quality.
@@ -117,5 +110,5 @@ export default function SitesPage() {
         </p>
       </section>
     </main>
-  )
+  );
 }

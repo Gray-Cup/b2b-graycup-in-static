@@ -46,34 +46,10 @@ export function Navbar() {
                 </Link>
               ))}
             </nav>
-
-            {/* Desktop-only links */}
-            <p className="opacity-20 hidden lg:block">|</p>
-            <nav className="hidden lg:flex text-sm font-medium">
-              {[
-                ["Social Responsibility", "/social-responsibility"],
-                ["Careers", "/careers"],
-              ].map(([label, href]) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className="rounded-md px-2 py-2 hover:bg-neutral-100"
-                >
-                  {label}
-                </Link>
-              ))}
-            </nav>
           </div>
 
           {/* RIGHT */}
           <div className="flex items-center gap-2">
-            {/* Desktop buttons */}
-            <Link href="/contact" className="hidden xl:inline-block">
-              <Button variant="lightgray" size="sm">
-                Email Us
-              </Button>
-            </Link>
-
             <a
               id="store-link"
               href="https://graycup.in/"
@@ -82,7 +58,7 @@ export function Navbar() {
               className="hidden lg:inline-block"
             >
               <Button variant="blue" size="sm">
-                Visit Store
+                Visit Consumer Store
               </Button>
             </a>
 
@@ -145,7 +121,6 @@ export function Navbar() {
               ["Newsroom", "/newsroom"],
               ["Our Impact", "/impact"],
               ["Social Responsibility", "/social-responsibility"],
-              ["Careers", "/careers"],
               ["About", "/about"],
             ].map(([label, href]) => (
               <Link
@@ -161,22 +136,16 @@ export function Navbar() {
 
           {/* Actions */}
           <div className="mt-auto flex flex-col gap-2 pt-6">
-            <Link href="/contact" onClick={() => setMenuOpen(false)}>
-              <Button variant="lightgray" size="sm" className="w-full">
-                Email Us
-              </Button>
-            </Link>
-
-            <a
+            <Link
               href="https://graycup.in/"
               target="_blank"
               rel="noopener"
               onClick={() => setMenuOpen(false)}
             >
               <Button variant="blue" size="sm" className="w-full">
-                Visit Store
+                Visit Consumer Store
               </Button>
-            </a>
+            </Link>
           </div>
         </aside>
       </div>
