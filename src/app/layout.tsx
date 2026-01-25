@@ -109,10 +109,10 @@ export default function RootLayout({
         )}
       >
         <RootProviders>{children}</RootProviders>
-        <UserJotWidget />
+        {/* <UserJotWidget /> */}
         <WhatsappWidget />
         {/* <IntercomChat /> */}
-        <Script id="crisp-chat" strategy="afterInteractive">
+        {/* <Script id="crisp-chat" strategy="afterInteractive">
           {`
             window.$crisp = [];
             window.CRISP_WEBSITE_ID = "db496e2e-4326-4f7d-82ab-369ab666fb46";
@@ -124,7 +124,7 @@ export default function RootLayout({
               d.getElementsByTagName("head")[0].appendChild(s);
             })();
           `}
-        </Script>
+        </Script> */}
         {/* <Script>
           {`(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");
     script.src="${(process.env.NEXT_PUBLIC_CHATBASE_HOST || "https://www.chatbase.co/") + "embed.min.js"}";

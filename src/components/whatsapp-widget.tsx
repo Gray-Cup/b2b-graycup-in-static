@@ -3,7 +3,7 @@ export function WhatsappWidget() {
     <a
       href="https://whatsapp.com/"
       target="_blank"
-      className="fixed bottom-25 rounded-full scale-121 cursor-pointer duration-200 right-8"
+      className="fixed bottom-10 rounded-full scale-121 cursor-pointer duration-200 right-8"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
