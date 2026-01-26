@@ -10,6 +10,8 @@ import {
 import { CoffeeCup } from "@/components/svgs";
 import { LazyProductRow } from "@/components/products";
 
+export const revalidate = 3600;
+
 export default function Home() {
   return (
     <div>
