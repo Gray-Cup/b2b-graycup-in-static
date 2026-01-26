@@ -32,6 +32,7 @@ export function Navbar() {
             <nav className="hidden md:flex gap-1 text-sm font-medium">
               {[
                 ["Products", "/products"],
+                ["Sample Request", "/sample-request"],
               ].map(([label, href]) => (
                 <Link
                   key={href}
