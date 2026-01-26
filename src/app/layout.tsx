@@ -9,6 +9,7 @@ import Script from "next/script";
 import IntercomChat from "@/components/IntercomChat";
 import { WhatsappWidget } from "@/components/whatsapp-widget";
 import { ChatBot } from "@/components/chatbot";
+import { Analytics } from "@vercel/analytics/next"
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -109,6 +110,7 @@ export default function RootLayout({
           fontPublicSans.variable,
         )}
       >
+        <Analytics />
         <RootProviders>{children}</RootProviders>
         {/* <UserJotWidget /> */}
         <WhatsappWidget />
