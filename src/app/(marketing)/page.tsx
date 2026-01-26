@@ -1,48 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { products } from "@/data/products";
-
-
 import {
-  CreateAgent,
-  IDEAgent,
-  Forms,
-  Questions,
-  ToDo,
-  ProductPr,
-  ProductIssue,
-  CustomerCalls,
-  ProductPrBottomLeft,
-  CoffeeCup,
-} from "@/components/svgs";
-import { ProductCard } from "@/components/products";
+  coffeeProducts,
+  ctcTeaProducts,
+  looseLeafTeaProducts,
+  instantCoffeeProducts,
+} from "@/data/products";
+import { CoffeeCup } from "@/components/svgs";
+import { LazyProductRow } from "@/components/products";
 
 export default function Home() {
-  const [mounted, setMounted] = useState(false);
-  const [randomizedComponents, setRandomizedComponents] = useState<
-    React.ComponentType<{ className?: string }>[]
-  >([]);
-
-  useEffect(() => {
-    const components = [
-      CreateAgent,
-      IDEAgent,
-      Forms,
-      Questions,
-      ToDo,
-      ProductPr,
-      ProductIssue,
-      CustomerCalls,
-    ];
-
-    // Shuffle components
-    const shuffled = [...components].sort(() => Math.random() - 0.5);
-    setRandomizedComponents(shuffled);
-    setMounted(true);
-  }, []);
-
   return (
     <div>
       <div className="mx-auto px-4 lg:px-6 h-auto my-10">
@@ -58,11 +26,18 @@ export default function Home() {
               {/* Featured Products Section */}
               <div className="py-20 bg-white">
                 <div className="max-w-6xl mx-auto px-4 lg:px-6">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            {products.map((product) => (
-              <ProductCard key={product.slug} product={product} />
-            ))}
-                  </div>
+                  <LazyProductRow
+                    title="Coffee"
+                    products={[...coffeeProducts, ...instantCoffeeProducts]}
+                  />
+                  <LazyProductRow
+                    title="CTC Tea"
+                    products={ctcTeaProducts}
+                  />
+                  <LazyProductRow
+                    title="Loose Leaf Tea"
+                    products={looseLeafTeaProducts}
+                  />
                 </div>
               </div>
             </div>
