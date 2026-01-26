@@ -48,9 +48,7 @@ export function Navbar() {
           <div className="flex items-center gap-2">
                         <a
               id="store-link"
-              href="/contact-methods"
-              target="_blank"
-              rel="noopener"
+              href="/contact"
               className="hidden lg:inline-block"
             >
               <Button variant="gray" size="sm">

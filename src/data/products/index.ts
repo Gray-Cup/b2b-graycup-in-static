@@ -28,7 +28,7 @@ export function getAllProductSlugs(): string[] {
   return products.map((product) => product.slug);
 }
 
-export function getProductsByCategory(category: "tea" | "coffee"): Product[] {
+export function getProductsByCategory(category: "Tea" | "Coffee"): Product[] {
   return products.filter((product) => product.category === category);
 }
 

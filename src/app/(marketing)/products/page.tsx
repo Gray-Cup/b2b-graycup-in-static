@@ -4,20 +4,20 @@ import { useState, useMemo } from "react";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/products";
 
-type CategoryFilter = "all" | "tea" | "coffee";
+type CategoryFilter = "All" | "Tea" | "Coffee";
 
 export default function ProductsPage() {
-  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("all");
+  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("All");
 
   const filteredProducts = useMemo(() => {
-    if (categoryFilter === "all") return products;
+    if (categoryFilter === "All") return products;
     return products.filter((product) => product.category === categoryFilter);
   }, [categoryFilter]);
 
   const categories: { value: CategoryFilter; label: string }[] = [
-    { value: "all", label: "All Products" },
-    { value: "tea", label: "Tea" },
-    { value: "coffee", label: "Coffee" },
+    { value: "All", label: "All Products" },
+    { value: "Tea", label: "Tea" },
+    { value: "Coffee", label: "Coffee" },
   ];
 
   return (
