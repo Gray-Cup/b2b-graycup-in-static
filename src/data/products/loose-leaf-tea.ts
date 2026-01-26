@@ -18,7 +18,7 @@ export const looseLeafTeaProducts: Product[] = [
       "Premium grade options",
     ],
     locations: ["Darjeeling", "Assam", "Kangra", "Munnar"],
-    category: "tea",
+    category: "Tea",
     priceRange: {
       min: 300,
       max: 2500,
@@ -48,7 +48,7 @@ export const looseLeafTeaProducts: Product[] = [
       "Limited seasonal availability",
     ],
     locations: ["Darjeeling"],
-    category: "tea",
+    category: "Tea",
     priceRange: {
       min: 800,
       max: 3500,
@@ -78,7 +78,7 @@ export const looseLeafTeaProducts: Product[] = [
       "Perfect for connoisseurs",
     ],
     locations: ["Assam", "Upper Assam", "Dibrugarh"],
-    category: "tea",
+    category: "Tea",
     priceRange: {
       min: 500,
       max: 2000,

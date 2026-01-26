@@ -18,7 +18,7 @@ export const instantCoffeeProducts: Product[] = [
       "Long shelf life",
     ],
     locations: ["Chikmagalur", "Coorg", "Wayanad"],
-    category: "coffee",
+    category: "Coffee",
     priceRange: {
       min: 300,
       max: 900,
@@ -48,7 +48,7 @@ export const instantCoffeeProducts: Product[] = [
       "Perfect for specialty retail",
     ],
     locations: ["Coorg", "Chikmagalur", "Araku Valley"],
-    category: "coffee",
+    category: "Coffee",
     priceRange: {
       min: 600,
       max: 1800,
@@ -78,7 +78,7 @@ export const instantCoffeeProducts: Product[] = [
       "Economical choice",
     ],
     locations: ["Chikmagalur", "Coorg", "Salem"],
-    category: "coffee",
+    category: "Coffee",
     priceRange: {
       min: 250,
       max: 700,

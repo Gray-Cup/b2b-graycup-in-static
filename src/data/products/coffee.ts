@@ -18,7 +18,7 @@ export const coffeeProducts: Product[] = [
       "Single origin available",
     ],
     locations: ["Coorg", "Chikmagalur", "Wayanad", "Araku Valley"],
-    category: "coffee",
+    category: "Coffee",
     priceRange: {
       min: 200,
       max: 800,
@@ -48,7 +48,7 @@ export const coffeeProducts: Product[] = [
       "Freshly roasted to order",
     ],
     locations: ["Chikmagalur", "Coorg", "Wayanad", "Bababudangiri"],
-    category: "coffee",
+    category: "Coffee",
     priceRange: {
       min: 350,
       max: 1200,
@@ -78,7 +78,7 @@ export const coffeeProducts: Product[] = [
       "Multiple grind options",
     ],
     locations: ["Wayanad", "Chikmagalur", "Coorg", "Araku Valley"],
-    category: "coffee",
+    category: "Coffee",
     priceRange: {
       min: 400,
       max: 1400,
