@@ -24,7 +24,7 @@ export default function ProductsPage() {
     <div className="px-4 lg:px-6">
       <div className="min-h-screen py-20">
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
-          <div className="text-center mb-16">
+          <div className=" text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-semibold text-black mb-4">
               Our Products
             </h1>
@@ -60,7 +60,7 @@ export default function ProductsPage() {
 
             {/* Products Grid */}
             <div className="flex-1">
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {filteredProducts.map((product) => (
                   <ProductCard key={product.slug} product={product} />
                 ))}

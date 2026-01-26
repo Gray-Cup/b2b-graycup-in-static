@@ -77,7 +77,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   alt={product.name}
                   fill
                   draggable={false}
-                  className="object-contain p-8"
+                  className="object-contain"
                   priority
                 />
               </div>
