@@ -32,7 +32,6 @@ export function Navbar() {
             <nav className="hidden md:flex gap-1 text-sm font-medium">
               {[
                 ["Products", "/products"],
-                ["About", "/about"],
               ].map(([label, href]) => (
                 <Link
                   key={href}
@@ -126,7 +125,6 @@ export function Navbar() {
           <nav className="flex flex-col gap-2 text-sm font-medium">
             {[
               ["Products", "/products"],
-              ["About", "/about"],
             ].map(([label, href]) => (
               <Link
                 key={href}
