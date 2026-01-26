@@ -10,7 +10,6 @@ export function Navbar() {
 
   return (
     <>
-      {/* ================= NAVBAR ================= */}
       <header className="w-full border-b border-neutral-200 bg-white">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-6">
           {/* LEFT */}
@@ -33,8 +32,6 @@ export function Navbar() {
             <nav className="hidden md:flex gap-1 text-sm font-medium">
               {[
                 ["Products", "/products"],
-                ["Newsroom", "/newsroom"],
-                ["Our Impact", "/impact"],
                 ["About", "/about"],
               ].map(([label, href]) => (
                 <Link
