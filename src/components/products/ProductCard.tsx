@@ -13,7 +13,7 @@ type ProductCardProps = {
 export function ProductCard({ product, showPrice = true }: ProductCardProps) {
   return (
     <Link href={`/products/${product.slug}`}>
-      <Card className="overflow-hidden border border-gray-200 rounded-lg bg-white p-0 cursor-pointer transition-all hover:border-gray-300 hover:shadow-sm">
+      <Card className="overflow-hidden rounded-lg bg-neutral-50 p-0 cursor-pointer transition-all">
         <div className="aspect-square relative">
           <Image
             src={product.image}
@@ -22,13 +22,20 @@ export function ProductCard({ product, showPrice = true }: ProductCardProps) {
             draggable={false}
             className="object-cover"
           />
+
+          {product.categoryTwo && (
+            <span className="absolute top-2 right-2 bg-green-600 px-2 py-1 rounded text-xs font-medium text-white capitalize">
+              {product.categoryTwo}
+            </span>
+          )}
         </div>
-        <div className="-mt-3 pb-4 text-center">
-          <h3 className="text-md font-semibold text-black">{product.name}</h3>
+        <div className="px-3 pb-6">
+          <h3 className="text-md hover:underline font-semibold text-black">{product.name}</h3>
           {showPrice && (
-            <p className="text-xs text-muted-foreground mt-1">
-              From ₹{product.priceRange.min}/{product.minimumOrder.unit}
-            </p>
+            <div className="flex items-center justify-between text-xs text-muted-foreground mt-1">
+              <span>From ₹{product.priceRange.min}/{product.minimumOrder.unit}</span>
+              <span>MOQ: {product.minimumOrder.quantity} {product.minimumOrder.unit}</span>
+            </div>
           )}
         </div>
       </Card>

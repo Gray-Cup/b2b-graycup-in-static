@@ -18,7 +18,8 @@ export const ctcTeaProducts: Product[] = [
       "Extended shelf life",
     ],
     locations: ["Assam", "Darjeeling", "Nilgiri", "Dooars"],
-    category: "tea",
+    category: "Tea",
+    categoryTwo: "Single Origin",
     priceRange: {
       min: 150,
       max: 450,
@@ -48,7 +49,8 @@ export const ctcTeaProducts: Product[] = [
       "Versatile brewing applications",
     ],
     locations: ["Assam", "Dooars", "Nilgiri"],
-    category: "tea",
+    category: "Tea",
+    categoryTwo: "Blend",
     priceRange: {
       min: 200,
       max: 550,

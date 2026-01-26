@@ -15,15 +15,15 @@ export function Navbar() {
           {/* LEFT */}
           <div className="flex items-center gap-6">
             <Link href="/" className="flex items-center gap-3">
-              <Image
+              {/* <Image
                 src="/logo.svg"
                 alt="Gray Cup"
                 width={45}
                 height={45}
                 draggable={false}
-              />
+              /> */}
               <span className="text-xl font-semibold text-nowrap tracking-tight">
-                B2B Gray Cup
+                <span className="text-white bg-green-700 px-2 py-1 rounded-md text-xl">B2B</span> Gray Cup 
               </span>
             </Link>
             <p className="opacity-20">|</p>
@@ -47,6 +47,17 @@ export function Navbar() {
 
           {/* RIGHT */}
           <div className="flex items-center gap-2">
+                        <a
+              id="store-link"
+              href="/contact-methods"
+              target="_blank"
+              rel="noopener"
+              className="hidden lg:inline-block"
+            >
+              <Button variant="gray" size="sm">
+                Contact Methods
+              </Button>
+            </a>
             <a
               id="store-link"
               href="https://graycup.in/"
@@ -115,9 +126,6 @@ export function Navbar() {
           <nav className="flex flex-col gap-2 text-sm font-medium">
             {[
               ["Products", "/products"],
-              ["Newsroom", "/newsroom"],
-              ["Our Impact", "/impact"],
-              ["Social Responsibility", "/social-responsibility"],
               ["About", "/about"],
             ].map(([label, href]) => (
               <Link

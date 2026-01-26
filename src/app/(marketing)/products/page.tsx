@@ -1,9 +1,25 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/products";
 
+type CategoryFilter = "all" | "tea" | "coffee";
+
 export default function ProductsPage() {
+  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("all");
+
+  const filteredProducts = useMemo(() => {
+    if (categoryFilter === "all") return products;
+    return products.filter((product) => product.category === categoryFilter);
+  }, [categoryFilter]);
+
+  const categories: { value: CategoryFilter; label: string }[] = [
+    { value: "all", label: "All Products" },
+    { value: "tea", label: "Tea" },
+    { value: "coffee", label: "Coffee" },
+  ];
+
   return (
     <div className="px-4 lg:px-6">
       <div className="min-h-screen py-20">
@@ -17,10 +33,44 @@ export default function ProductsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {products.map((product) => (
-              <ProductCard key={product.slug} product={product} />
-            ))}
+          <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
+            {/* Filters Sidebar */}
+            <aside className="lg:w-56 shrink-0">
+              <div className="sticky top-24">
+                <h2 className="text-sm font-semibold text-black mb-4 uppercase tracking-wide">
+                  Category
+                </h2>
+                <div className="space-y-2">
+                  {categories.map((category) => (
+                    <button
+                      key={category.value}
+                      onClick={() => setCategoryFilter(category.value)}
+                      className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                        categoryFilter === category.value
+                          ? "bg-black text-white"
+                          : "text-muted-foreground hover:bg-gray-100"
+                      }`}
+                    >
+                      {category.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </aside>
+
+            {/* Products Grid */}
+            <div className="flex-1">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {filteredProducts.map((product) => (
+                  <ProductCard key={product.slug} product={product} />
+                ))}
+              </div>
+              {filteredProducts.length === 0 && (
+                <p className="text-center text-muted-foreground py-12">
+                  No products found for this category.
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>

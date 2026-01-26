@@ -3,10 +3,11 @@ export type Product = {
   name: string;
   image: string;
   description: string;
-  longDescription: string;
+  longDescription?: string;
   details: string[];
   locations: string[];
-  category: "tea" | "coffee";
+  category: "Tea" | "Coffee" | "Matcha";
+  categoryTwo?: "Single Origin" | "Blend" | "Premium";
   priceRange: {
     min: number;
     max: number;
