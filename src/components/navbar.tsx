@@ -24,7 +24,7 @@ export function Navbar() {
                 draggable={false}
               />
               <span className="text-xl font-semibold text-nowrap tracking-tight">
-                Gray Cup
+                B2B Gray Cup
               </span>
             </Link>
             <p className="opacity-20">|</p>
