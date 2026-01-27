@@ -62,9 +62,7 @@ export async function POST(request: NextRequest) {
         return_url: `${origin}/sample-request?link_id=${linkId}`,
       },
 
-      link_notify: {
-        notify_url: `${origin}/api/cashfree/webhook`,
-      },
+      link_notify: true,
 
       link_expiry_time: expiryTime.toISOString(),
     };
