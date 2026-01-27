@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, type ReactNode } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,11 +9,25 @@ import type { Product } from "@/data/products";
 
 type PriceCalculatorProps = {
   product: Product;
+  onConfigChange?: (config: { grade: string; quantity: number }) => void;
+  children?: ReactNode;
 };
 
-export function PriceCalculator({ product }: PriceCalculatorProps) {
-  const [quantity, setQuantity] = useState(product.minimumOrder.quantity);
-  const [selectedGrade, setSelectedGrade] = useState(product.grades[0]);
+export function PriceCalculator({ product, onConfigChange, children }: PriceCalculatorProps) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Initialize from URL params or defaults
+  const initialGrade = searchParams.get("grade") || product.grades[0];
+  const initialQuantity = parseInt(searchParams.get("qty") || "") || product.minimumOrder.quantity;
+
+  const [quantity, setQuantity] = useState(
+    product.grades.includes(initialGrade) ? initialQuantity : product.minimumOrder.quantity
+  );
+  const [selectedGrade, setSelectedGrade] = useState(
+    product.grades.includes(initialGrade) ? initialGrade : product.grades[0]
+  );
 
   const gradeMultiplier = useMemo(() => {
     const index = product.grades.indexOf(selectedGrade);
@@ -31,6 +46,19 @@ export function PriceCalculator({ product }: PriceCalculatorProps) {
     const basePrice = (product.priceRange.min + product.priceRange.max) / 2;
     return basePrice * gradeMultiplier;
   }, [gradeMultiplier, product.priceRange]);
+
+  // Sync state to URL params
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("grade", selectedGrade);
+    params.set("qty", quantity.toString());
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  }, [selectedGrade, quantity, pathname, router, searchParams]);
+
+  // Notify parent of config changes
+  useEffect(() => {
+    onConfigChange?.({ grade: selectedGrade, quantity });
+  }, [selectedGrade, quantity, onConfigChange]);
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value) || 0;
@@ -109,6 +137,8 @@ export function PriceCalculator({ product }: PriceCalculatorProps) {
           inspection, and market conditions. Request a quote for accurate
           pricing.
         </p>
+
+        {children && <div className="pt-4 border-t">{children}</div>}
       </CardContent>
     </Card>
   );

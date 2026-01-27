@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Turnstile, useTurnstile } from "@/components/ui/turnstile";
 
 const productOptions = [
   { id: "ctc-tea", label: "CTC Tea", color: "bg-green-600 border-green-600" },
@@ -40,6 +41,7 @@ const businessCategories = [
 export default function SampleRequestPage() {
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const turnstile = useTurnstile();
 
   const toggleProduct = (productId: string) => {
     setSelectedProducts((prev) =>
@@ -141,10 +143,17 @@ export default function SampleRequestPage() {
             </div>
           </div>
 
+          <Turnstile
+            onVerify={turnstile.handleVerify}
+            onError={turnstile.handleError}
+            onExpire={turnstile.handleExpire}
+          />
+
           <Button
             type="submit"
             variant="gray"
             className="w-full h-11 rounded-lg mt-4"
+            disabled={!turnstile.isVerified}
           >
             Submit Request
           </Button>

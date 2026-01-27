@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Turnstile, useTurnstile } from "@/components/ui/turnstile";
 
 const productCategories = [
   { id: "tea", label: "Tea", color: "bg-green-600 border-green-600" },
@@ -19,6 +20,7 @@ const productCategories = [
 
 export default function NewProductRequestPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const turnstile = useTurnstile();
 
   return (
     <div className="min-h-screen py-10">
@@ -109,10 +111,17 @@ export default function NewProductRequestPage() {
             <Input id="quantity" placeholder="e.g., 100 kg, 500 units" />
           </div>
 
+          <Turnstile
+            onVerify={turnstile.handleVerify}
+            onError={turnstile.handleError}
+            onExpire={turnstile.handleExpire}
+          />
+
           <Button
             type="submit"
             variant="gray"
             className="w-full h-11 rounded-lg mt-4"
+            disabled={!turnstile.isVerified}
           >
             Submit Request
           </Button>

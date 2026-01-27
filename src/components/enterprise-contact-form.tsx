@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Turnstile, useTurnstile } from "@/components/ui/turnstile";
 import {
   CheckIcon,
   Loader2,
@@ -26,6 +27,7 @@ export function EnterpriseContactForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const turnstile = useTurnstile();
 
   const formData = {
     companyName: "",
@@ -253,6 +255,15 @@ export function EnterpriseContactForm({
         ))}
       </div>
 
+      {/* Turnstile - show on last step */}
+      {currentStep === steps.length - 1 && (
+        <Turnstile
+          onVerify={turnstile.handleVerify}
+          onError={turnstile.handleError}
+          onExpire={turnstile.handleExpire}
+        />
+      )}
+
       {/* Navigation Buttons */}
       <div className="flex justify-between pt-4">
         <Button
@@ -269,7 +280,7 @@ export function EnterpriseContactForm({
             <Button
               type="submit"
               className="bg-blue-600 hover:bg-blue-700 text-white"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !turnstile.isVerified}
             >
               {isSubmitting ? (
                 <>

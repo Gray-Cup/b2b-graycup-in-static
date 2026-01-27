@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Turnstile, useTurnstile } from "@/components/ui/turnstile";
 import {
   Dialog,
   DialogContent,
@@ -15,6 +17,8 @@ import type { Product } from "@/data/products";
 
 type QuoteRequestFormProps = {
   product: Product;
+  selectedGrade?: string;
+  selectedQuantity?: number;
 };
 
 type FormData = {
@@ -27,19 +31,46 @@ type FormData = {
   message: string;
 };
 
-export function QuoteRequestForm({ product }: QuoteRequestFormProps) {
+export function QuoteRequestForm({ product, selectedGrade, selectedQuantity }: QuoteRequestFormProps) {
+  const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const turnstile = useTurnstile();
+
+  // Get grade and quantity from props, URL params, or defaults
+  const getInitialGrade = useCallback(() => {
+    if (selectedGrade && product.grades.includes(selectedGrade)) return selectedGrade;
+    const urlGrade = searchParams.get("grade");
+    if (urlGrade && product.grades.includes(urlGrade)) return urlGrade;
+    return product.grades[0];
+  }, [selectedGrade, product.grades, searchParams]);
+
+  const getInitialQuantity = useCallback(() => {
+    if (selectedQuantity && selectedQuantity > 0) return selectedQuantity.toString();
+    const urlQty = searchParams.get("qty");
+    if (urlQty && parseInt(urlQty) > 0) return urlQty;
+    return product.minimumOrder.quantity.toString();
+  }, [selectedQuantity, product.minimumOrder.quantity, searchParams]);
+
   const [formData, setFormData] = useState<FormData>({
     companyName: "",
     contactName: "",
     email: "",
     phone: "",
-    quantity: product.minimumOrder.quantity.toString(),
-    grade: product.grades[0],
+    quantity: getInitialQuantity(),
+    grade: getInitialGrade(),
     message: "",
   });
+
+  // Update form when URL params or props change
+  useEffect(() => {
+    setFormData(prev => ({
+      ...prev,
+      grade: getInitialGrade(),
+      quantity: getInitialQuantity(),
+    }));
+  }, [getInitialGrade, getInitialQuantity]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -64,13 +95,14 @@ export function QuoteRequestForm({ product }: QuoteRequestFormProps) {
     setTimeout(() => {
       setIsOpen(false);
       setIsSubmitted(false);
+      turnstile.reset();
       setFormData({
         companyName: "",
         contactName: "",
         email: "",
         phone: "",
-        quantity: product.minimumOrder.quantity.toString(),
-        grade: product.grades[0],
+        quantity: getInitialQuantity(),
+        grade: getInitialGrade(),
         message: "",
       });
     }, 2000);
@@ -217,13 +249,20 @@ export function QuoteRequestForm({ product }: QuoteRequestFormProps) {
                 />
               </div>
 
+              <Turnstile
+                onVerify={turnstile.handleVerify}
+                onError={turnstile.handleError}
+                onExpire={turnstile.handleExpire}
+                size="normal"
+              />
+
               <div className="pt-2">
                 <Button
                   type="submit"
                   variant="blue"
                   size="lg"
                   className="w-full"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !turnstile.isVerified}
                 >
                   {isSubmitting ? (
                     <>

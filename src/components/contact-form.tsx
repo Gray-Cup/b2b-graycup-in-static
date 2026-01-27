@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { Turnstile, useTurnstile } from "@/components/ui/turnstile";
 import { Loader2, Send, CheckCircle, AlertCircle } from "lucide-react";
 
 interface ContactFormData {
@@ -43,6 +44,7 @@ export function ContactForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submissionState, setSubmissionState] =
     useState<SubmissionState>("idle");
+  const turnstile = useTurnstile();
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -304,10 +306,16 @@ export function ContactForm() {
             )}
           </div>
 
+          <Turnstile
+            onVerify={turnstile.handleVerify}
+            onError={turnstile.handleError}
+            onExpire={turnstile.handleExpire}
+          />
+
           <Button
             type="submit"
             className="w-full"
-            disabled={submissionState === "submitting"}
+            disabled={submissionState === "submitting" || !turnstile.isVerified}
             size="lg"
             variant="gray"
           >

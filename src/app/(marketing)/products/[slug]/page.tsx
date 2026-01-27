@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getProductBySlug, getAllProductSlugs } from "@/data/products";
-import { PriceCalculator, QuoteRequestForm } from "@/components/products";
+import { ProductConfigurator } from "@/components/products";
 import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
@@ -20,7 +21,7 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: ProductPageProps) {
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
   const product = getProductBySlug(slug);
 
@@ -28,9 +29,30 @@ export async function generateMetadata({ params }: ProductPageProps) {
     return { title: "Product Not Found" };
   }
 
+  const baseUrl = "https://b2b.graycup.in";
+  const productUrl = `${baseUrl}/products/${slug}`;
+
+  const seoDescription = `Buy ${product.name} in bulk from Gray Cup B2B. ${product.description} Price: ₹${product.priceRange.min}-₹${product.priceRange.max} ${product.priceRange.unit}. MOQ: ${product.minimumOrder.quantity} ${product.minimumOrder.unit}.`;
+
   return {
-    title: `${product.name} - Gray Cup B2B`,
-    description: product.description,
+    title: `${product.name} | Wholesale ${product.category} Supplier India - Gray Cup B2B`,
+    description: seoDescription,
+    openGraph: {
+      title: `${product.name} | Wholesale ${product.category} - Gray Cup B2B`,
+      description: seoDescription,
+      url: productUrl,
+      siteName: "Gray Cup B2B",
+      type: "website",
+      locale: "en_IN",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} | Wholesale ${product.category} - Gray Cup B2B`,
+      description: seoDescription,
+    },
+    alternates: {
+      canonical: productUrl,
+    },
   };
 }
 
@@ -116,11 +138,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </div>
               </div>
 
-              {/* Price Calculator - FIRST */}
-              <PriceCalculator product={product} />
-
-              {/* Quote Request Button */}
-              <QuoteRequestForm product={product} />
+              {/* Price Calculator with Share Button and Quote Request */}
+              <ProductConfigurator product={product} />
 
               {/* Accordions for Product Details */}
               <Accordion type="multiple" defaultValue={["description"]}>
