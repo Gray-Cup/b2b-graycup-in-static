@@ -155,7 +155,7 @@ export default function SampleRequestPage() {
             className="w-full h-11 rounded-lg mt-4"
             disabled={!turnstile.isVerified}
           >
-            Submit Request
+            Proceed to Payment
           </Button>
         </form>
       </div>
