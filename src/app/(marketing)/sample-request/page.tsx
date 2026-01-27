@@ -41,6 +41,11 @@ const businessCategories = [
 export default function SampleRequestPage() {
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [companyName, setCompanyName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const turnstile = useTurnstile();
 
   const toggleProduct = (productId: string) => {
@@ -49,6 +54,36 @@ export default function SampleRequestPage() {
         ? prev.filter((id) => id !== productId)
         : [...prev, productId],
     );
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/api/create-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerName: companyName,
+          customerPhone: phone,
+          customerEmail: email || undefined,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to create payment link");
+      }
+
+      // Redirect to Cashfree payment page
+      window.location.href = data.paymentLink;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong");
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -63,10 +98,16 @@ export default function SampleRequestPage() {
           </p>
         </div>
 
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-2">
             <Label htmlFor="company">Company Name</Label>
-            <Input id="company" placeholder="Your company name" required />
+            <Input
+              id="company"
+              placeholder="Your company name"
+              required
+              value={companyName}
+              onChange={(e) => setCompanyName(e.target.value)}
+            />
           </div>
 
           <div className="space-y-3">
@@ -109,8 +150,21 @@ export default function SampleRequestPage() {
                 type="tel"
                 placeholder="+91 98765 43210"
                 required
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
             </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="email">Email Address</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="business@company.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
 
           <div className="space-y-2">
@@ -149,13 +203,17 @@ export default function SampleRequestPage() {
             onExpire={turnstile.handleExpire}
           />
 
+          {error && (
+            <p className="text-red-600 text-sm">{error}</p>
+          )}
+
           <Button
             type="submit"
             variant="gray"
             className="w-full h-11 rounded-lg mt-4"
-            disabled={!turnstile.isVerified}
+            disabled={!turnstile.isVerified || isLoading}
           >
-            Proceed to Payment
+            {isLoading ? "Processing..." : "Proceed to Payment"}
           </Button>
         </form>
       </div>
