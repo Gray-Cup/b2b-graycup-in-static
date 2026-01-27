@@ -36,12 +36,24 @@ export default function NewProductRequestPage() {
         </div>
 
         <form className="space-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="company">Company Name</Label>
             <Input id="company" placeholder="Your company name" required />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="email">Email Address</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="you@company.com"
+              required
+            />
+          </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="name">Contact Name</Label>
               <Input id="name" placeholder="Your name" required />
@@ -56,16 +68,6 @@ export default function NewProductRequestPage() {
                 required
               />
             </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="email">Email Address</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="you@company.com"
-              required
-            />
           </div>
 
           <div className="space-y-3">
@@ -87,7 +89,7 @@ export default function NewProductRequestPage() {
               ))}
             </div>
           </div>
-
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="productName">Product Name / Description</Label>
             <Input
@@ -96,6 +98,12 @@ export default function NewProductRequestPage() {
               required
             />
           </div>
+                    <div className="space-y-2">
+            <Label htmlFor="quantity">Estimated Quantity (per month)</Label>
+            <Input id="quantity" placeholder="e.g., 100 kg, 500 units" />
+          </div>
+</div>
+
 
           <div className="space-y-2">
             <Label htmlFor="details">Additional Details</Label>
@@ -106,10 +114,7 @@ export default function NewProductRequestPage() {
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="quantity">Estimated Quantity (per month)</Label>
-            <Input id="quantity" placeholder="e.g., 100 kg, 500 units" />
-          </div>
+
 
           <Turnstile
             onVerify={turnstile.handleVerify}
