@@ -19,9 +19,19 @@ export default function Home() {
             {/* Left Column */}
             <div>
               <div>
-                <span className="mb-4 sm:ml-0.5 text-sm font-medium uppercase text-neutral-500">
-                  We Support Sustainability
+                <span className="pb-4 sm:ml-0.5 text-sm font-medium uppercase text-neutral-500">
+                  Sustainability & Transparency
                 </span>
+                <h1 className="text-4xl font-semibold text-black pt-2 max-w-xl">We help Businesses at Scale with Better Support</h1>
+                <p className="text-lg text-neutral-700 mt-4 max-w-2xl">
+                  We are dedicated to providing exceptional service and support
+                  to our B2B clients. Whether you're a small cafe or a large
+                  hotel chain, we operate with new tech and ethical practices.
+                </p>
+                <div className="pt-5 flex flex-row gap-4">
+                <Button variant="lightgray" size="sm">Schedule a Call</Button>
+                <Button variant="red" size="sm">Schedule a Zoom Meeting</Button>
+                </div>
               </div>
               {/* Featured Products Section */}
               <div className="py-20 bg-white">
