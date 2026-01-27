@@ -29,10 +29,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate unique link ID
-    const linkId = `sample_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+    // Generate unique IDs
+    const linkId = `sample_${Date.now()}_${Math.random()
+      .toString(36)
+      .substring(2, 9)}`;
 
-    // Set expiry to 1 year from now (simulates permanent link)
+    const orderId = `order_${Date.now()}_${Math.random()
+      .toString(36)
+      .substring(2, 7)}`;
+
+    // Set expiry to 1 year from now
     const expiryTime = new Date();
     expiryTime.setFullYear(expiryTime.getFullYear() + 1);
 
@@ -40,17 +46,26 @@ export async function POST(request: NextRequest) {
 
     const paymentLinkPayload = {
       link_id: linkId,
+      order_id: orderId,
+
       link_amount: 299,
       link_currency: "INR",
       link_purpose: "Sample Request - GrayCup",
+
       customer_details: {
         customer_name: customerName,
         customer_phone: customerPhone.replace(/\D/g, "").slice(-10),
         ...(customerEmail && { customer_email: customerEmail }),
       },
+
       link_meta: {
-        return_url: `${origin}/sample-request?status=success&link_id=${linkId}`,
+        return_url: `${origin}/sample-request?link_id=${linkId}`,
       },
+
+      link_notify: {
+        notify_url: `${origin}/api/cashfree/webhook`,
+      },
+
       link_expiry_time: expiryTime.toISOString(),
     };
 
@@ -79,6 +94,7 @@ export async function POST(request: NextRequest) {
       success: true,
       paymentLink: data.link_url,
       linkId: data.link_id,
+      orderId,
     });
   } catch (error) {
     console.error("Payment creation error:", error);
