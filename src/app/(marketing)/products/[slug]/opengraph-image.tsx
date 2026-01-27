@@ -3,10 +3,14 @@ import { getProductBySlug } from "@/data/products";
 
 export const alt = "Gray Cup B2B - Product";
 export const size = {
-  width: 1200,
-  height: 630,
+  width: 2400,
+  height: 1260,
 };
 export const contentType = "image/png";
+
+function formatCurrency(value: number): string {
+  return value.toLocaleString("en-IN");
+}
 
 export default async function Image({ params }: { params: { slug: string } }) {
   const product = getProductBySlug(params.slug);
@@ -16,7 +20,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
       (
         <div
           style={{
-            fontSize: 48,
+            fontSize: 96,
             background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
             width: "100%",
             height: "100%",
@@ -37,70 +41,33 @@ export default async function Image({ params }: { params: { slug: string } }) {
     (
       <div
         style={{
-          fontSize: 32,
+          fontSize: 64,
           background: "linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%)",
           width: "100%",
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          padding: "48px",
+          padding: "96px",
         }}
       >
-        {/* Header with logo area */}
+        {/* Header */}
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginBottom: "32px",
+            marginBottom: "64px",
           }}
         >
-          <div
+          <span
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
+              fontSize: "56px",
+              fontWeight: "600",
+              color: "#1a1a1a",
             }}
           >
-            <div
-              style={{
-                width: "48px",
-                height: "48px",
-                background: "#1a1a1a",
-                borderRadius: "8px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "white",
-                fontSize: "24px",
-                fontWeight: "bold",
-              }}
-            >
-              GC
-            </div>
-            <span
-              style={{
-                fontSize: "24px",
-                fontWeight: "600",
-                color: "#1a1a1a",
-              }}
-            >
-              Gray Cup B2B
-            </span>
-          </div>
-          <div
-            style={{
-              background:
-                product.category === "Tea" ? "#15803d" : "#92400e",
-              color: "white",
-              padding: "8px 20px",
-              borderRadius: "24px",
-              fontSize: "18px",
-              fontWeight: "500",
-            }}
-          >
-            {product.category}
-          </div>
+            Gray Cup B2B
+          </span>
         </div>
 
         {/* Main content area */}
@@ -108,20 +75,20 @@ export default async function Image({ params }: { params: { slug: string } }) {
           style={{
             display: "flex",
             flex: 1,
-            gap: "48px",
+            gap: "96px",
           }}
         >
           {/* Product image */}
           <div
             style={{
-              width: "400px",
-              height: "400px",
+              width: "800px",
+              height: "800px",
               background: "white",
-              borderRadius: "24px",
+              borderRadius: "48px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              border: "1px solid #e5e5e5",
+              border: "2px solid #e5e5e5",
               overflow: "hidden",
             }}
           >
@@ -152,10 +119,10 @@ export default async function Image({ params }: { params: { slug: string } }) {
           >
             <h1
               style={{
-                fontSize: "52px",
+                fontSize: "104px",
                 fontWeight: "700",
                 color: "#1a1a1a",
-                margin: "0 0 16px 0",
+                margin: "0 0 32px 0",
                 lineHeight: 1.1,
               }}
             >
@@ -163,9 +130,9 @@ export default async function Image({ params }: { params: { slug: string } }) {
             </h1>
             <p
               style={{
-                fontSize: "24px",
+                fontSize: "48px",
                 color: "#525252",
-                margin: "0 0 32px 0",
+                margin: "0 0 64px 0",
                 lineHeight: 1.4,
                 display: "-webkit-box",
                 WebkitLineClamp: 2,
@@ -180,7 +147,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
             <div
               style={{
                 display: "flex",
-                gap: "32px",
+                gap: "64px",
               }}
             >
               <div
@@ -191,21 +158,21 @@ export default async function Image({ params }: { params: { slug: string } }) {
               >
                 <span
                   style={{
-                    fontSize: "16px",
+                    fontSize: "32px",
                     color: "#737373",
-                    marginBottom: "4px",
+                    marginBottom: "8px",
                   }}
                 >
                   Price Range
                 </span>
                 <span
                   style={{
-                    fontSize: "28px",
+                    fontSize: "56px",
                     fontWeight: "600",
                     color: "#1a1a1a",
                   }}
                 >
-                  ₹{product.priceRange.min} - ₹{product.priceRange.max}
+                  {formatCurrency(product.priceRange.min)} - {formatCurrency(product.priceRange.max)}/kg
                 </span>
               </div>
               <div
@@ -216,16 +183,16 @@ export default async function Image({ params }: { params: { slug: string } }) {
               >
                 <span
                   style={{
-                    fontSize: "16px",
+                    fontSize: "32px",
                     color: "#737373",
-                    marginBottom: "4px",
+                    marginBottom: "8px",
                   }}
                 >
                   Minimum Order
                 </span>
                 <span
                   style={{
-                    fontSize: "28px",
+                    fontSize: "56px",
                     fontWeight: "600",
                     color: "#1a1a1a",
                   }}
@@ -243,14 +210,14 @@ export default async function Image({ params }: { params: { slug: string } }) {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginTop: "24px",
-            paddingTop: "24px",
-            borderTop: "1px solid #e5e5e5",
+            marginTop: "48px",
+            paddingTop: "48px",
+            borderTop: "2px solid #e5e5e5",
           }}
         >
           <span
             style={{
-              fontSize: "18px",
+              fontSize: "36px",
               color: "#737373",
             }}
           >
@@ -258,7 +225,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
           </span>
           <span
             style={{
-              fontSize: "18px",
+              fontSize: "36px",
               color: "#737373",
             }}
           >
