@@ -31,11 +31,17 @@ export function ProductCard({ product, showPrice = true }: ProductCardProps) {
           )}
         </div>
         <div className="px-3 pb-6">
-          <h3 className="text-md hover:underline font-semibold text-black">{product.name}</h3>
+          <h3 className="text-md hover:underline font-semibold text-black">
+            {product.name}
+          </h3>
           {showPrice && (
             <div className="flex items-center justify-between text-xs text-muted-foreground mt-1">
-              <span>From ₹{product.priceRange.min}/{product.minimumOrder.unit}</span>
-              <span>MOQ: {product.minimumOrder.quantity} {product.minimumOrder.unit}</span>
+              <span>
+                From ₹{product.priceRange.min}/{product.minimumOrder.unit}
+              </span>
+              <span>
+                MOQ: {product.minimumOrder.quantity} {product.minimumOrder.unit}
+              </span>
             </div>
           )}
         </div>

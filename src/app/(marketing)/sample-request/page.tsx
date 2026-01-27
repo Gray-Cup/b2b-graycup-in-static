@@ -8,15 +8,31 @@ import { Textarea } from "@/components/ui/textarea";
 
 const productOptions = [
   { id: "ctc-tea", label: "CTC Tea", color: "bg-green-600 border-green-600" },
-  { id: "loose-leaf-tea", label: "Loose Leaf Tea", color: "bg-green-500 border-green-500" },
+  {
+    id: "loose-leaf-tea",
+    label: "Loose Leaf Tea",
+    color: "bg-green-500 border-green-500",
+  },
   { id: "coffee", label: "Coffee", color: "bg-amber-900 border-amber-900" },
-  { id: "instant-coffee", label: "Instant Coffee", color: "bg-amber-700 border-amber-700" },
+  {
+    id: "instant-coffee",
+    label: "Instant Coffee",
+    color: "bg-amber-700 border-amber-700",
+  },
 ];
 
 const businessCategories = [
   { id: "hotel", label: "Hotel", color: "bg-blue-900 border-blue-900" },
-  { id: "restaurant", label: "Restaurant", color: "bg-emerald-700 border-emerald-700" },
-  { id: "banquet-hall", label: "Banquet Hall", color: "bg-red-600 border-red-600" },
+  {
+    id: "restaurant",
+    label: "Restaurant",
+    color: "bg-emerald-700 border-emerald-700",
+  },
+  {
+    id: "banquet-hall",
+    label: "Banquet Hall",
+    color: "bg-red-600 border-red-600",
+  },
   { id: "cafe", label: "Cafe", color: "bg-amber-600 border-amber-600" },
   { id: "other", label: "Other", color: "bg-neutral-700 border-neutral-700" },
 ];
@@ -29,7 +45,7 @@ export default function SampleRequestPage() {
     setSelectedProducts((prev) =>
       prev.includes(productId)
         ? prev.filter((id) => id !== productId)
-        : [...prev, productId]
+        : [...prev, productId],
     );
   };
 
@@ -78,18 +94,22 @@ export default function SampleRequestPage() {
               />
             )}
           </div>
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="gst">GST Number</Label>
-            <Input id="gst" placeholder="22AAAAA0000A1Z5" required />
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="gst">GST Number</Label>
+              <Input id="gst" placeholder="22AAAAA0000A1Z5" required />
+            </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="phone">Phone Number</Label>
-            <Input id="phone" type="tel" placeholder="+91 98765 43210" required />
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone Number</Label>
+              <Input
+                id="phone"
+                type="tel"
+                placeholder="+91 98765 43210"
+                required
+              />
+            </div>
           </div>
-</div>
-
 
           <div className="space-y-2">
             <Label htmlFor="address">Delivery Address</Label>
@@ -121,7 +141,11 @@ export default function SampleRequestPage() {
             </div>
           </div>
 
-          <Button type="submit" variant="gray" className="w-full h-11 rounded-lg mt-4">
+          <Button
+            type="submit"
+            variant="gray"
+            className="w-full h-11 rounded-lg mt-4"
+          >
             Submit Request
           </Button>
         </form>

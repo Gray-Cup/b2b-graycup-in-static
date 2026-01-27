@@ -41,44 +41,43 @@ export function PriceCalculator({ product }: PriceCalculatorProps) {
 
   return (
     <Card className="border border-gray-200">
-      <CardHeader className="pb-4">
-        <CardTitle className="text-lg">Price Calculator</CardTitle>
-      </CardHeader>
       <CardContent className="space-y-5">
-        <div className="space-y-2">
-          <Label htmlFor="grade">Select Grade</Label>
-          <select
-            id="grade"
-            value={selectedGrade}
-            onChange={(e) => setSelectedGrade(e.target.value)}
-            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          >
-            {product.grades.map((grade) => (
-              <option key={grade} value={grade}>
-                {grade}
-              </option>
-            ))}
-          </select>
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="grade">Select Grade</Label>
+            <select
+              id="grade"
+              value={selectedGrade}
+              onChange={(e) => setSelectedGrade(e.target.value)}
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            >
+              {product.grades.map((grade) => (
+                <option key={grade} value={grade}>
+                  {grade}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="quantity">
-            Quantity ({product.minimumOrder.unit})
-          </Label>
-          <Input
-            id="quantity"
-            type="number"
-            min={0}
-            value={quantity}
-            onChange={handleQuantityChange}
-            placeholder={`Min: ${product.minimumOrder.quantity}`}
-          />
-          {!isAboveMinimum && quantity > 0 && (
-            <p className="text-sm text-red-500">
-              Minimum order: {product.minimumOrder.quantity}{" "}
-              {product.minimumOrder.unit}
-            </p>
-          )}
+          <div className="space-y-2">
+            <Label htmlFor="quantity">
+              Quantity ({product.minimumOrder.unit})
+            </Label>
+            <Input
+              id="quantity"
+              type="number"
+              min={0}
+              value={quantity}
+              onChange={handleQuantityChange}
+              placeholder={`Min: ${product.minimumOrder.quantity}`}
+            />
+            {!isAboveMinimum && quantity > 0 && (
+              <p className="text-sm text-red-500">
+                Minimum order: {product.minimumOrder.quantity}{" "}
+                {product.minimumOrder.unit}
+              </p>
+            )}
+          </div>
         </div>
 
         <div className="border-t pt-4 space-y-3">

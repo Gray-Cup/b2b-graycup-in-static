@@ -9,7 +9,11 @@ import { Textarea } from "@/components/ui/textarea";
 const productCategories = [
   { id: "tea", label: "Tea", color: "bg-green-600 border-green-600" },
   { id: "coffee", label: "Coffee", color: "bg-amber-900 border-amber-900" },
-  { id: "beverages", label: "Other Beverages", color: "bg-blue-600 border-blue-600" },
+  {
+    id: "beverages",
+    label: "Other Beverages",
+    color: "bg-blue-600 border-blue-600",
+  },
   { id: "other", label: "Other", color: "bg-neutral-700 border-neutral-700" },
 ];
 
@@ -24,7 +28,8 @@ export default function NewProductRequestPage() {
             New Product Request
           </h1>
           <p className="text-muted-foreground">
-            Have a product idea or want us to source something specific? Let us know.
+            Have a product idea or want us to source something specific? Let us
+            know.
           </p>
         </div>
 
@@ -42,13 +47,23 @@ export default function NewProductRequestPage() {
 
             <div className="space-y-2">
               <Label htmlFor="phone">Phone Number</Label>
-              <Input id="phone" type="tel" placeholder="+91 98765 43210" required />
+              <Input
+                id="phone"
+                type="tel"
+                placeholder="+91 98765 43210"
+                required
+              />
             </div>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="email">Email Address</Label>
-            <Input id="email" type="email" placeholder="you@company.com" required />
+            <Input
+              id="email"
+              type="email"
+              placeholder="you@company.com"
+              required
+            />
           </div>
 
           <div className="space-y-3">
@@ -73,7 +88,11 @@ export default function NewProductRequestPage() {
 
           <div className="space-y-2">
             <Label htmlFor="productName">Product Name / Description</Label>
-            <Input id="productName" placeholder="e.g., Organic Green Tea, Darjeeling First Flush" required />
+            <Input
+              id="productName"
+              placeholder="e.g., Organic Green Tea, Darjeeling First Flush"
+              required
+            />
           </div>
 
           <div className="space-y-2">
@@ -90,7 +109,11 @@ export default function NewProductRequestPage() {
             <Input id="quantity" placeholder="e.g., 100 kg, 500 units" />
           </div>
 
-          <Button type="submit" variant="gray" className="w-full h-11 rounded-lg mt-4">
+          <Button
+            type="submit"
+            variant="gray"
+            className="w-full h-11 rounded-lg mt-4"
+          >
             Submit Request
           </Button>
         </form>

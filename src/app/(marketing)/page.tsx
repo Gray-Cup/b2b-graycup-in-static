@@ -26,10 +26,7 @@ export default function Home() {
               {/* Featured Products Section */}
               <div className="py-20 bg-white">
                 <div className="max-w-6xl mx-auto px-4 lg:px-6">
-                  <LazyProductRow
-                    title="CTC Tea"
-                    products={ctcTeaProducts}
-                  />
+                  <LazyProductRow title="CTC Tea" products={ctcTeaProducts} />
                   <LazyProductRow
                     title="Coffee"
                     products={[...coffeeProducts, ...instantCoffeeProducts]}

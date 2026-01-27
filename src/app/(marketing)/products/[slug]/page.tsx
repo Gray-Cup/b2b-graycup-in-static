@@ -87,12 +87,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div className="space-y-6">
               {/* Product Header */}
               <div>
-                <Badge
-                  variant="secondary"
-                  className="mb-3 capitalize bg-gray-100 text-gray-700"
-                >
-                  {product.category}
-                </Badge>
                 <h1 className="text-3xl md:text-4xl font-semibold text-black mb-2">
                   {product.name}
                 </h1>

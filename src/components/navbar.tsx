@@ -23,7 +23,10 @@ export function Navbar() {
                 draggable={false}
               /> */}
               <span className="text-xl font-semibold text-nowrap tracking-tight">
-                <span className="text-white bg-green-700 px-2 py-1 rounded-md text-xl">B2B</span> Gray Cup 
+                <span className="text-white bg-green-700 px-2 py-1 rounded-md text-xl">
+                  B2B
+                </span>{" "}
+                Gray Cup
               </span>
             </Link>
             <p className="opacity-20">|</p>
@@ -49,7 +52,7 @@ export function Navbar() {
 
           {/* RIGHT */}
           <div className="flex items-center gap-2">
-                        <a
+            <a
               id="store-link"
               href="/contact"
               className="hidden lg:inline-block"

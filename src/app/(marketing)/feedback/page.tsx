@@ -7,15 +7,27 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 const feedbackTypes = [
-  { id: "product", label: "Product Quality", color: "bg-green-600 border-green-600" },
+  {
+    id: "product",
+    label: "Product Quality",
+    color: "bg-green-600 border-green-600",
+  },
   { id: "service", label: "Service", color: "bg-blue-600 border-blue-600" },
   { id: "delivery", label: "Delivery", color: "bg-amber-600 border-amber-600" },
-  { id: "suggestion", label: "Suggestion", color: "bg-purple-600 border-purple-600" },
+  {
+    id: "suggestion",
+    label: "Suggestion",
+    color: "bg-purple-600 border-purple-600",
+  },
   { id: "other", label: "Other", color: "bg-neutral-700 border-neutral-700" },
 ];
 
 const ratingOptions = [
-  { id: "excellent", label: "Excellent", color: "bg-green-600 border-green-600" },
+  {
+    id: "excellent",
+    label: "Excellent",
+    color: "bg-green-600 border-green-600",
+  },
   { id: "good", label: "Good", color: "bg-blue-600 border-blue-600" },
   { id: "average", label: "Average", color: "bg-amber-600 border-amber-600" },
   { id: "poor", label: "Poor", color: "bg-red-600 border-red-600" },
@@ -51,7 +63,12 @@ export default function FeedbackPage() {
 
             <div className="space-y-2">
               <Label htmlFor="email">Email Address</Label>
-              <Input id="email" type="email" placeholder="you@company.com" required />
+              <Input
+                id="email"
+                type="email"
+                placeholder="you@company.com"
+                required
+              />
             </div>
           </div>
 
@@ -105,7 +122,11 @@ export default function FeedbackPage() {
             />
           </div>
 
-          <Button type="submit" variant="gray" className="w-full h-11 rounded-lg mt-4">
+          <Button
+            type="submit"
+            variant="gray"
+            className="w-full h-11 rounded-lg mt-4"
+          >
             Submit Feedback
           </Button>
         </form>

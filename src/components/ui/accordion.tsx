@@ -142,7 +142,7 @@ function AccordionContent({ className, children }: AccordionContentProps) {
   return (
     <div
       className={cn(
-        "grid transition-all duration-200 ease-in-out",
+        "grid transition-all duration-200 cursor-pointer ease-in-out",
         isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
       )}
     >
