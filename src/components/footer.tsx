@@ -28,7 +28,7 @@ export default function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:underline hover:text-foreground transition-colors"
               >
                 {link.label}
               </Link>
@@ -42,7 +42,7 @@ export default function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:underline hover:text-foreground transition-colors"
               >
                 {link.label}
               </Link>
@@ -51,7 +51,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-6 pt-6 border-t border-neutral-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Gray Cup. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} <a href="https://graycup.org" className="hover:underline">Gray Cup</a>. All rights reserved.</p>
           <nav className="flex items-center gap-x-6">
             {resourceLinks.map((link) => (
               <Link
@@ -59,7 +59,7 @@ export default function Footer() {
                 href={link.href}
                 target={link.href.startsWith("http") ? "_blank" : undefined}
                 rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="hover:text-foreground transition-colors"
+                className="hover:text-foreground hover:underline transition-colors"
               >
                 {link.label}
               </Link>
