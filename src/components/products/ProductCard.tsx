@@ -19,6 +19,7 @@ export function ProductCard({ product, showPrice = true }: ProductCardProps) {
             src={product.image}
             alt={product.name}
             fill
+            priority
             draggable={false}
             className="object-cover"
           />
