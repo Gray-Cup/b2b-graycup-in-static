@@ -44,6 +44,7 @@ const fontPublicSans = Public_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://b2b.graycup.in"),
   title: "B2B Gray Cup",
   description:
     "We sell indian tea, coffee and matcha to people who care about quality.",

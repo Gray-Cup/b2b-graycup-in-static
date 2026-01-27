@@ -1,7 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getProductBySlug, getAllProductSlugs } from "@/data/products";
-
-export const runtime = "edge";
+import { getProductBySlug } from "@/data/products";
 
 export const alt = "Gray Cup B2B - Product";
 export const size = {
@@ -9,11 +7,6 @@ export const size = {
   height: 630,
 };
 export const contentType = "image/png";
-
-export function generateStaticParams() {
-  const slugs = getAllProductSlugs();
-  return slugs.map((slug) => ({ slug }));
-}
 
 export default async function Image({ params }: { params: { slug: string } }) {
   const product = getProductBySlug(params.slug);
