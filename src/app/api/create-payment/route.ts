@@ -62,7 +62,10 @@ export async function POST(request: NextRequest) {
         return_url: `${origin}/sample-request?link_id=${linkId}`,
       },
 
-      link_notify: true,
+      link_notify: {
+        send_sms: true,
+        send_email: true,
+      },
 
       link_expiry_time: expiryTime.toISOString(),
     };
