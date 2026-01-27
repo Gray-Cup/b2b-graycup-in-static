@@ -1,7 +1,7 @@
 import React from "react";
-import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import Footer from "@/components/footer";
+import { CountryBanner } from "@/components/country-banner";
 
 export default function MarketingLayout({
   children,
@@ -10,8 +10,11 @@ export default function MarketingLayout({
 }) {
   return (
     <div className="relative flex min-h-screen flex-col">
-      {/* Header */}
-      <Navbar />
+      {/* Sticky Header Group */}
+      <div className="sticky top-0 z-50">
+        <CountryBanner />
+        <Navbar />
+      </div>
 
       {/* Main content */}
       <main className="w-full">
