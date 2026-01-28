@@ -21,6 +21,30 @@ type FormData = {
   agenda: string;
 };
 
+function formatPhoneNumber(value: string): string {
+  // Remove all non-digit characters except +
+  const cleaned = value.replace(/[^\d+]/g, "");
+
+  // Handle numbers with country code (starting with +)
+  if (cleaned.startsWith("+")) {
+    const countryCode = cleaned.slice(0, 3); // e.g., +91
+    const number = cleaned.slice(3);
+
+    if (number.length <= 5) {
+      return `${countryCode} ${number}`;
+    } else {
+      return `${countryCode} ${number.slice(0, 5)} ${number.slice(5, 10)}`;
+    }
+  }
+
+  // Handle numbers without country code (assume Indian)
+  if (cleaned.length <= 5) {
+    return cleaned;
+  } else {
+    return `${cleaned.slice(0, 5)} ${cleaned.slice(5, 10)}`;
+  }
+}
+
 export function RequestCallDialog() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,7 +62,12 @@ export function RequestCallDialog() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (name === "phone") {
+      setFormData((prev) => ({ ...prev, phone: formatPhoneNumber(value) }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
