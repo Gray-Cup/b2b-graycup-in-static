@@ -93,7 +93,7 @@ export function QuoteRequestForm({ product, selectedGrade, selectedQuantity }: Q
         },
         body: JSON.stringify({
           ...formData,
-          productId: product.id,
+          productId: product.slug,
           productName: product.name,
           turnstileToken: turnstile.token,
         }),

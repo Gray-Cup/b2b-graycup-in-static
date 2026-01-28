@@ -85,11 +85,10 @@ export async function POST(request: NextRequest) {
       contact_name: contactName.trim(),
       email: email.trim().toLowerCase(),
       phone: phone?.trim() || null,
-      quantity: quantity,
+      quantity: parseInt(quantity) || 0,
       grade: grade || null,
       message: message?.trim() || null,
       product_id: productId || null,
-      product_name: productName || null,
     });
 
     if (dbError) {

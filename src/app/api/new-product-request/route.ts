@@ -224,12 +224,12 @@ export async function POST(request: NextRequest) {
       .insert({
         company: requestData.company,
         email: requestData.email,
-        contact_name: requestData.name,
+        name: requestData.name,
         phone: requestData.phone,
         category: requestData.category,
         product_name: requestData.productName,
-        quantity: requestData.quantity,
-        details: requestData.details,
+        quantity: requestData.quantity || null,
+        details: requestData.details || null,
       });
 
     if (dbError) {

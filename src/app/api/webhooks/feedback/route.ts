@@ -72,11 +72,11 @@ export async function POST(request: NextRequest) {
 
     // Save to Supabase
     const { error: dbError } = await supabase.from("feedback_submissions").insert({
-      company: company?.trim() || null,
-      contact_name: name?.trim() || null,
+      company: company?.trim() || "",
+      name: name?.trim() || "",
       email: email.trim().toLowerCase(),
-      feedback_type: feedbackType || null,
-      rating: rating || null,
+      feedback_type: feedbackType || "",
+      rating: rating || "",
       feedback: feedback.trim(),
     });
 
@@ -86,12 +86,13 @@ export async function POST(request: NextRequest) {
 
     // Send to Discord if configured
     if (DISCORD_WEBHOOK_URL) {
-      const ratingEmoji = {
+      const ratingEmojiMap: Record<string, string> = {
         excellent: "⭐⭐⭐⭐⭐",
         good: "⭐⭐⭐⭐",
         average: "⭐⭐⭐",
         poor: "⭐⭐",
-      }[rating] || "";
+      };
+      const ratingEmoji = rating ? ratingEmojiMap[rating] || "" : "";
 
       const discordMessage = {
         embeds: [
