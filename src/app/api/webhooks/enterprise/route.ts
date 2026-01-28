@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { supabase } from "@/lib/supabase";
 
 // This should be your Discord webhook URL for enterprise inquiries
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_ENTERPRISE_WEBHOOK_URL;
@@ -26,6 +27,28 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { error: "Company name, contact name, and email are required" },
         { status: 400 },
+      );
+    }
+
+    // Insert into Supabase
+    const { error: dbError } = await supabase.from("enterprise_inquiries").insert({
+      company_name: companyName,
+      website: website || "",
+      industry: industry || "",
+      team_size: teamSize || "",
+      contact_name: contactName,
+      contact_email: contactEmail,
+      contact_phone: contactPhone || null,
+      budget_range: budgetRange || "",
+      timeline: timeline || "",
+      requirements: requirements || "",
+    });
+
+    if (dbError) {
+      console.error("Supabase insert error:", dbError);
+      return NextResponse.json(
+        { error: "Failed to save submission. Please try again." },
+        { status: 500 }
       );
     }
 
