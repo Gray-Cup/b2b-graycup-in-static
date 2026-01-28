@@ -19,6 +19,7 @@ export type Database = {
           message: string
           created_at: string
           status: string
+          resolved: boolean
         }
         Insert: {
           id?: string
@@ -29,6 +30,7 @@ export type Database = {
           message: string
           created_at?: string
           status?: string
+          resolved?: boolean
         }
         Update: {
           id?: string
@@ -39,6 +41,7 @@ export type Database = {
           message?: string
           created_at?: string
           status?: string
+          resolved?: boolean
         }
         Relationships: []
       }
@@ -55,6 +58,7 @@ export type Database = {
           product_id: string | null
           created_at: string
           status: string
+          resolved: boolean
         }
         Insert: {
           id?: string
@@ -68,6 +72,7 @@ export type Database = {
           product_id?: string | null
           created_at?: string
           status?: string
+          resolved?: boolean
         }
         Update: {
           id?: string
@@ -81,6 +86,7 @@ export type Database = {
           product_id?: string | null
           created_at?: string
           status?: string
+          resolved?: boolean
         }
         Relationships: []
       }
@@ -97,6 +103,7 @@ export type Database = {
           selected_products: string[]
           payment_status: string
           created_at: string
+          resolved: boolean
         }
         Insert: {
           id?: string
@@ -110,6 +117,7 @@ export type Database = {
           selected_products: string[]
           payment_status?: string
           created_at?: string
+          resolved?: boolean
         }
         Update: {
           id?: string
@@ -123,6 +131,7 @@ export type Database = {
           selected_products?: string[]
           payment_status?: string
           created_at?: string
+          resolved?: boolean
         }
         Relationships: []
       }
@@ -136,6 +145,7 @@ export type Database = {
           rating: string
           feedback: string
           created_at: string
+          resolved: boolean
         }
         Insert: {
           id?: string
@@ -146,6 +156,7 @@ export type Database = {
           rating: string
           feedback: string
           created_at?: string
+          resolved?: boolean
         }
         Update: {
           id?: string
@@ -156,6 +167,7 @@ export type Database = {
           rating?: string
           feedback?: string
           created_at?: string
+          resolved?: boolean
         }
         Relationships: []
       }
@@ -172,6 +184,7 @@ export type Database = {
           details: string | null
           created_at: string
           status: string
+          resolved: boolean
         }
         Insert: {
           id?: string
@@ -185,6 +198,7 @@ export type Database = {
           details?: string | null
           created_at?: string
           status?: string
+          resolved?: boolean
         }
         Update: {
           id?: string
@@ -198,6 +212,37 @@ export type Database = {
           details?: string | null
           created_at?: string
           status?: string
+          resolved?: boolean
+        }
+        Relationships: []
+      }
+      call_requests: {
+        Row: {
+          id: string
+          name: string
+          phone: string
+          company_name: string
+          agenda: string
+          created_at: string
+          resolved: boolean
+        }
+        Insert: {
+          id?: string
+          name: string
+          phone: string
+          company_name: string
+          agenda: string
+          created_at?: string
+          resolved?: boolean
+        }
+        Update: {
+          id?: string
+          name?: string
+          phone?: string
+          company_name?: string
+          agenda?: string
+          created_at?: string
+          resolved?: boolean
         }
         Relationships: []
       }

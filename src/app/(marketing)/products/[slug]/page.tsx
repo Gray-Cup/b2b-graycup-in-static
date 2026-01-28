@@ -16,6 +16,8 @@ type ProductPageProps = {
   params: Promise<{ slug: string }>;
 };
 
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   const slugs = getAllProductSlugs();
   return slugs.map((slug) => ({ slug }));

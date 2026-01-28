@@ -7,6 +7,8 @@ import {
 } from "@/data/products";
 import { CoffeeCup } from "@/components/svgs";
 import { LazyProductRow } from "@/components/products";
+import { RequestCallDialog } from "@/components/RequestCallDialog";
+import Link from "next/link";
 
 export const revalidate = 3600;
 
@@ -29,8 +31,10 @@ export default function Home() {
                   hotel chain, we operate with new tech and ethical practices.
                 </p>
                 <div className="pt-5 flex flex-row gap-4">
-                <Button variant="lightgray" size="sm">Schedule a Call</Button>
+                <RequestCallDialog />
+                <Link href="https://cal.com/arjunaditya/30min?user=arjunaditya" target="_blank">
                 <Button variant="red" size="sm">Schedule a Zoom Meeting</Button>
+                </Link>
                 </div>
               </div>
               {/* Featured Products Section */}

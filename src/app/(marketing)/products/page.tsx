@@ -4,6 +4,8 @@ import { useState, useMemo } from "react";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/products";
 
+export const revalidate = 3600;
+
 type CategoryFilter = "All" | "Tea" | "Coffee";
 
 export default function ProductsPage() {
