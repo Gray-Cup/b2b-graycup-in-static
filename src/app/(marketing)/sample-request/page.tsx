@@ -196,6 +196,7 @@ export default function SampleRequestPage() {
               ))}
             </div>
           </div>
+          <p className="text-sm text-neutral-700">ps: This page is not functioning properly but the api endpoint is open source at <a href="https://github.com/Gray-Cup/b2b-graycup-in-static/tree/main/src/app/api/create-payment">github repo</a>.</p>
 
           <Turnstile
             onVerify={turnstile.handleVerify}
