@@ -38,7 +38,7 @@ export default function NewProductRequestPage() {
       email: formData.get("email") as string,
       name: formData.get("name") as string,
       phone: formData.get("phone") as string,
-      category: selectedCategory,
+      category: selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1),
       productName: formData.get("productName") as string,
       quantity: formData.get("quantity") as string,
       details: formData.get("details") as string,
