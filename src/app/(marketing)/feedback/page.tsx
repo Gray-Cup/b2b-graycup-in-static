@@ -37,7 +37,64 @@ const ratingOptions = [
 export default function FeedbackPage() {
   const [selectedType, setSelectedType] = useState<string>("");
   const [selectedRating, setSelectedRating] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
   const turnstile = useTurnstile();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      company: formData.get("company") as string,
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      feedbackType: selectedType,
+      rating: selectedRating,
+      feedback: formData.get("feedback") as string,
+      turnstileToken: turnstile.token,
+    };
+
+    try {
+      const response = await fetch("/api/webhooks/feedback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: "success",
+          message: "Thank you for your feedback!",
+        });
+        (e.target as HTMLFormElement).reset();
+        setSelectedType("");
+        setSelectedRating("");
+        turnstile.reset();
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message: result.error || "Something went wrong. Please try again.",
+        });
+      }
+    } catch {
+      setSubmitStatus({
+        type: "error",
+        message: "Network error. Please check your connection and try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen py-10">
@@ -51,22 +108,23 @@ export default function FeedbackPage() {
           </p>
         </div>
 
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-2">
             <Label htmlFor="company">Company Name</Label>
-            <Input id="company" placeholder="Your company name" required />
+            <Input id="company" name="company" placeholder="Your company name" required />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="name">Contact Name</Label>
-              <Input id="name" placeholder="Your name" required />
+              <Input id="name" name="name" placeholder="Your name" required />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="email">Email Address</Label>
               <Input
                 id="email"
+                name="email"
                 type="email"
                 placeholder="you@company.com"
                 required
@@ -118,6 +176,7 @@ export default function FeedbackPage() {
             <Label htmlFor="feedback">Your Feedback</Label>
             <Textarea
               id="feedback"
+              name="feedback"
               placeholder="Please share your experience, suggestions, or concerns in detail..."
               rows={5}
               required
@@ -130,13 +189,25 @@ export default function FeedbackPage() {
             onExpire={turnstile.handleExpire}
           />
 
+          {submitStatus && (
+            <div
+              className={`p-4 rounded-lg ${
+                submitStatus.type === "success"
+                  ? "bg-green-50 text-green-800 border border-green-200"
+                  : "bg-red-50 text-red-800 border border-red-200"
+              }`}
+            >
+              {submitStatus.message}
+            </div>
+          )}
+
           <Button
             type="submit"
             variant="gray"
             className="w-full h-11 rounded-lg mt-4"
-            disabled={!turnstile.isVerified}
+            disabled={!turnstile.isVerified || isSubmitting}
           >
-            Submit Feedback
+            {isSubmitting ? "Submitting..." : "Submit Feedback"}
           </Button>
         </form>
       </div>

@@ -85,27 +85,47 @@ export function QuoteRequestForm({ product, selectedGrade, selectedQuantity }: Q
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    // Reset after showing success
-    setTimeout(() => {
-      setIsOpen(false);
-      setIsSubmitted(false);
-      turnstile.reset();
-      setFormData({
-        companyName: "",
-        contactName: "",
-        email: "",
-        phone: "",
-        quantity: getInitialQuantity(),
-        grade: getInitialGrade(),
-        message: "",
+    try {
+      const response = await fetch("/api/quote-request", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          productId: product.id,
+          productName: product.name,
+          turnstileToken: turnstile.token,
+        }),
       });
-    }, 2000);
+
+      if (!response.ok) {
+        throw new Error("Failed to submit");
+      }
+
+      setIsSubmitted(true);
+
+      // Reset after showing success
+      setTimeout(() => {
+        setIsOpen(false);
+        setIsSubmitted(false);
+        turnstile.reset();
+        setFormData({
+          companyName: "",
+          contactName: "",
+          email: "",
+          phone: "",
+          quantity: getInitialQuantity(),
+          grade: getInitialGrade(),
+          message: "",
+        });
+      }, 2000);
+    } catch (error) {
+      console.error("Quote request error:", error);
+      alert("Failed to submit request. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

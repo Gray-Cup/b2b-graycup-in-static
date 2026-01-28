@@ -1,67 +1,148 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { supabase } from "@/lib/supabase";
 
-// This should be your Discord webhook URL for feedback
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_FEEDBACK_WEBHOOK_URL;
 
-export async function POST(request: Request) {
+async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
+  const secretKey = process.env.TURNSTILE_SECRET_KEY;
+  if (!secretKey) {
+    console.warn("TURNSTILE_SECRET_KEY not configured");
+    return true;
+  }
+
+  try {
+    const response = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          secret: secretKey,
+          response: token,
+          remoteip: ip,
+        }),
+      }
+    );
+
+    const result = await response.json();
+    return result.success === true;
+  } catch (error) {
+    console.error("Turnstile verification error:", error);
+    return false;
+  }
+}
+
+function getClientIP(request: NextRequest): string {
+  const forwarded = request.headers.get("x-forwarded-for");
+  const realIP = request.headers.get("x-real-ip");
+  const cfConnectingIP = request.headers.get("cf-connecting-ip");
+
+  if (cfConnectingIP) return cfConnectingIP;
+  if (realIP) return realIP;
+  if (forwarded) return forwarded.split(",")[0].trim();
+
+  return "unknown";
+}
+
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { message, email, twitter, type } = body;
+    const { company, name, email, feedbackType, rating, feedback, turnstileToken } = body;
 
-    if (!message || !email) {
+    if (!email || !feedback) {
       return NextResponse.json(
-        { error: "Message and email are required" },
+        { error: "Email and feedback are required" },
         { status: 400 },
       );
     }
 
-    if (!DISCORD_WEBHOOK_URL) {
-      console.error("Discord webhook URL is not configured");
-      return NextResponse.json(
-        { error: "Webhook not configured" },
-        { status: 500 },
-      );
+    // Verify Turnstile token
+    if (turnstileToken) {
+      const clientIP = getClientIP(request);
+      const isValidToken = await verifyTurnstile(turnstileToken, clientIP);
+      if (!isValidToken) {
+        return NextResponse.json(
+          { error: "Security verification failed. Please try again." },
+          { status: 400 }
+        );
+      }
     }
 
-    // Format the message for Discord
-    const discordMessage = {
-      embeds: [
-        {
-          title: "💬 New Feedback",
-          color: 10181046, // Purple color
-          fields: [
-            {
-              name: "Feedback",
-              value: message,
-            },
-            {
-              name: "Contact",
-              value: `Email: ${email}\nTwitter: ${twitter || "Not provided"}`,
-            },
-          ],
-          timestamp: new Date().toISOString(),
-        },
-      ],
-    };
-
-    // Send to Discord webhook
-    const response = await fetch(DISCORD_WEBHOOK_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(discordMessage),
+    // Save to Supabase
+    const { error: dbError } = await supabase.from("feedback_submissions").insert({
+      company: company?.trim() || null,
+      contact_name: name?.trim() || null,
+      email: email.trim().toLowerCase(),
+      feedback_type: feedbackType || null,
+      rating: rating || null,
+      feedback: feedback.trim(),
     });
 
-    if (!response.ok) {
-      throw new Error(`Discord webhook error: ${response.statusText}`);
+    if (dbError) {
+      console.error("Supabase insert error:", dbError);
+    }
+
+    // Send to Discord if configured
+    if (DISCORD_WEBHOOK_URL) {
+      const ratingEmoji = {
+        excellent: "⭐⭐⭐⭐⭐",
+        good: "⭐⭐⭐⭐",
+        average: "⭐⭐⭐",
+        poor: "⭐⭐",
+      }[rating] || "";
+
+      const discordMessage = {
+        embeds: [
+          {
+            title: "💬 New Feedback",
+            color: 10181046,
+            fields: [
+              {
+                name: "Company",
+                value: company || "Not provided",
+                inline: true,
+              },
+              {
+                name: "Contact",
+                value: `${name || "Anonymous"} (${email})`,
+                inline: true,
+              },
+              {
+                name: "Type",
+                value: feedbackType || "General",
+                inline: true,
+              },
+              {
+                name: "Rating",
+                value: `${rating || "Not rated"} ${ratingEmoji}`,
+                inline: true,
+              },
+              {
+                name: "Feedback",
+                value: feedback.substring(0, 1000),
+              },
+            ],
+            timestamp: new Date().toISOString(),
+          },
+        ],
+      };
+
+      await fetch(DISCORD_WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(discordMessage),
+      }).catch((err) => console.error("Discord webhook error:", err));
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error sending to Discord webhook:", error);
+    console.error("Error processing feedback:", error);
     return NextResponse.json(
-      { error: "Failed to send to Discord" },
+      { error: "Failed to submit feedback" },
       { status: 500 },
     );
   }
