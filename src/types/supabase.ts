@@ -42,54 +42,6 @@ export type Database = {
         }
         Relationships: []
       }
-      enterprise_inquiries: {
-        Row: {
-          id: string
-          company_name: string
-          website: string
-          industry: string
-          team_size: string
-          contact_name: string
-          contact_email: string
-          contact_phone: string | null
-          budget_range: string
-          timeline: string
-          requirements: string
-          created_at: string
-          status: string
-        }
-        Insert: {
-          id?: string
-          company_name: string
-          website: string
-          industry: string
-          team_size: string
-          contact_name: string
-          contact_email: string
-          contact_phone?: string | null
-          budget_range: string
-          timeline: string
-          requirements: string
-          created_at?: string
-          status?: string
-        }
-        Update: {
-          id?: string
-          company_name?: string
-          website?: string
-          industry?: string
-          team_size?: string
-          contact_name?: string
-          contact_email?: string
-          contact_phone?: string | null
-          budget_range?: string
-          timeline?: string
-          requirements?: string
-          created_at?: string
-          status?: string
-        }
-        Relationships: []
-      }
       quote_requests: {
         Row: {
           id: string
