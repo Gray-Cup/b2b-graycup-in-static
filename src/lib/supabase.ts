@@ -6,7 +6,9 @@ let supabaseClient: SupabaseClient<Database> | null = null;
 function getSupabaseClient(): SupabaseClient<Database> {
   if (!supabaseClient) {
     const url = process.env.SUPABASE_URL;
-    const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    // Support both new secret key (sb_secret_...) and legacy service role key for migration
+    const key =
+      process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
 
     if (!url || !key) {
       throw new Error("Supabase credentials not configured");
