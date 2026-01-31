@@ -50,15 +50,36 @@ export default function Footer() {
           </nav>
         </div>
 
+        {/* Minimal legal line */}
+        <p className="mt-6 text-xs text-muted-foreground">
+          Gray Cup® is a brand operated by Gray Cup Enterprises Private Limited,
+          a company incorporated in India. CIN: U47211DL2025PTC457808 · GSTIN:
+          07AAMCG4985H1Z2 · IEC: AAMCG4985H.
+        </p>
+
         <div className="mt-6 pt-6 border-t border-neutral-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} <a href="https://graycup.org" className="hover:underline">Gray Cup</a>. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()}{" "}
+            <a
+              href="https://graycup.org"
+              className="hover:underline"
+            >
+              Gray Cup
+            </a>
+            . All rights reserved.
+          </p>
+
           <nav className="flex items-center gap-x-6">
             {resourceLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                rel={
+                  link.href.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 className="hover:text-foreground hover:underline transition-colors"
               >
                 {link.label}
