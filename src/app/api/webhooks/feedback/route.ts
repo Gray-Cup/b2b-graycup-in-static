@@ -23,7 +23,7 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
           response: token,
           remoteip: ip,
         }),
-      }
+      },
     );
 
     const result = await response.json();
@@ -49,7 +49,15 @@ function getClientIP(request: NextRequest): string {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { company, name, email, feedbackType, rating, feedback, turnstileToken } = body;
+    const {
+      company,
+      name,
+      email,
+      feedbackType,
+      rating,
+      feedback,
+      turnstileToken,
+    } = body;
 
     if (!email || !feedback) {
       return NextResponse.json(
@@ -65,20 +73,22 @@ export async function POST(request: NextRequest) {
       if (!isValidToken) {
         return NextResponse.json(
           { error: "Security verification failed. Please try again." },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
 
     // Save to Supabase
-    const { error: dbError } = await supabase.from("feedback_submissions").insert({
-      company: company?.trim() || "",
-      name: name?.trim() || "",
-      email: email.trim().toLowerCase(),
-      feedback_type: feedbackType || "",
-      rating: rating || "",
-      feedback: feedback.trim(),
-    });
+    const { error: dbError } = await supabase
+      .from("feedback_submissions")
+      .insert({
+        company: company?.trim() || "",
+        name: name?.trim() || "",
+        email: email.trim().toLowerCase(),
+        feedback_type: feedbackType || "",
+        rating: rating || "",
+        feedback: feedback.trim(),
+      });
 
     if (dbError) {
       console.error("Supabase insert error:", dbError);

@@ -38,7 +38,7 @@ export function ShareButton({ productName }: ShareButtonProps) {
     window.open(
       `https://wa.me/?text=${encodeURIComponent(text)}`,
       "_blank",
-      "noopener,noreferrer"
+      "noopener,noreferrer",
     );
   };
 

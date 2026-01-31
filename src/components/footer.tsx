@@ -80,16 +80,16 @@ export default function Footer() {
 
           <p>
             Importer Exporter Code (IEC):{" "}
-            <span className="whitespace-nowrap">AAMCG4985H</span>.
-            Exports are carried out in accordance with the Foreign Trade Policy
-            of India and applicable export regulations.
+            <span className="whitespace-nowrap">AAMCG4985H</span>. Exports are
+            carried out in accordance with the Foreign Trade Policy of India and
+            applicable export regulations.
           </p>
 
           <p>
             Food Safety and Standards Authority of India (FSSAI) License:{" "}
-            <span className="whitespace-nowrap">processing..</span>.
-            All food products are handled, packaged, and supplied in compliance
-            with FSSAI regulations and food safety standards.
+            <span className="whitespace-nowrap">processing..</span>. All food
+            products are handled, packaged, and supplied in compliance with
+            FSSAI regulations and food safety standards.
           </p>
 
           <p>
@@ -102,8 +102,8 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-6 pt-6 border-t border-neutral-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-muted-foreground">
           <p>
-            © {new Date().getFullYear()} Gray Cup Enterprises Pvt. Ltd. All rights
-            reserved.
+            © {new Date().getFullYear()} Gray Cup Enterprises Pvt. Ltd. All
+            rights reserved.
           </p>
 
           <nav className="flex items-center gap-x-6 text-sm">

@@ -38,7 +38,8 @@ export default function NewProductRequestPage() {
       email: formData.get("email") as string,
       name: formData.get("name") as string,
       phone: formData.get("phone") as string,
-      category: selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1),
+      category:
+        selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1),
       productName: formData.get("productName") as string,
       quantity: formData.get("quantity") as string,
       details: formData.get("details") as string,
@@ -95,21 +96,26 @@ export default function NewProductRequestPage() {
 
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="company">Company Name</Label>
-            <Input id="company" name="company" placeholder="Your company name" required />
-          </div>
+            <div className="space-y-2">
+              <Label htmlFor="company">Company Name</Label>
+              <Input
+                id="company"
+                name="company"
+                placeholder="Your company name"
+                required
+              />
+            </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="email">Email Address</Label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="you@company.com"
-              required
-            />
-          </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email Address</Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@company.com"
+                required
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -149,22 +155,25 @@ export default function NewProductRequestPage() {
               ))}
             </div>
           </div>
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="productName">Product Name / Description</Label>
-            <Input
-              id="productName"
-              name="productName"
-              placeholder="e.g., Organic Green Tea, Darjeeling First Flush"
-              required
-            />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="productName">Product Name / Description</Label>
+              <Input
+                id="productName"
+                name="productName"
+                placeholder="e.g., Organic Green Tea, Darjeeling First Flush"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="quantity">Estimated Quantity (per month)</Label>
+              <Input
+                id="quantity"
+                name="quantity"
+                placeholder="e.g., 100 kg, 500 units"
+              />
+            </div>
           </div>
-                    <div className="space-y-2">
-            <Label htmlFor="quantity">Estimated Quantity (per month)</Label>
-            <Input id="quantity" name="quantity" placeholder="e.g., 100 kg, 500 units" />
-          </div>
-</div>
-
 
           <div className="space-y-2">
             <Label htmlFor="details">Additional Details</Label>
@@ -175,8 +184,6 @@ export default function NewProductRequestPage() {
               rows={4}
             />
           </div>
-
-
 
           <Turnstile
             onVerify={turnstile.handleVerify}

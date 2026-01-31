@@ -21,7 +21,7 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
           response: token,
           remoteip: ip,
         }),
-      }
+      },
     );
 
     const result = await response.json();
@@ -62,8 +62,10 @@ export async function POST(request: NextRequest) {
 
     if (!companyName || !contactName || !email || !quantity) {
       return NextResponse.json(
-        { error: "Company name, contact name, email, and quantity are required" },
-        { status: 400 }
+        {
+          error: "Company name, contact name, email, and quantity are required",
+        },
+        { status: 400 },
       );
     }
 
@@ -74,7 +76,7 @@ export async function POST(request: NextRequest) {
       if (!isValidToken) {
         return NextResponse.json(
           { error: "Security verification failed. Please try again." },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
@@ -95,7 +97,7 @@ export async function POST(request: NextRequest) {
       console.error("Supabase insert error:", dbError);
       return NextResponse.json(
         { error: "Failed to save quote request. Please try again." },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -107,7 +109,7 @@ export async function POST(request: NextRequest) {
     console.error("Quote request API error:", error);
     return NextResponse.json(
       { error: "Internal server error. Please try again later." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

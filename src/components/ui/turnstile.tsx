@@ -14,7 +14,7 @@ declare global {
           "expired-callback"?: () => void;
           theme?: "light" | "dark" | "auto";
           size?: "normal" | "compact";
-        }
+        },
       ) => string;
       reset: (widgetId: string) => void;
       remove: (widgetId: string) => void;
@@ -49,7 +49,7 @@ export function Turnstile({
     (token: string) => {
       onVerify(token);
     },
-    [onVerify]
+    [onVerify],
   );
 
   const handleError = useCallback(() => {

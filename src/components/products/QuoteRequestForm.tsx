@@ -31,7 +31,11 @@ type FormData = {
   message: string;
 };
 
-export function QuoteRequestForm({ product, selectedGrade, selectedQuantity }: QuoteRequestFormProps) {
+export function QuoteRequestForm({
+  product,
+  selectedGrade,
+  selectedQuantity,
+}: QuoteRequestFormProps) {
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,14 +44,16 @@ export function QuoteRequestForm({ product, selectedGrade, selectedQuantity }: Q
 
   // Get grade and quantity from props, URL params, or defaults
   const getInitialGrade = useCallback(() => {
-    if (selectedGrade && product.grades.includes(selectedGrade)) return selectedGrade;
+    if (selectedGrade && product.grades.includes(selectedGrade))
+      return selectedGrade;
     const urlGrade = searchParams.get("grade");
     if (urlGrade && product.grades.includes(urlGrade)) return urlGrade;
     return product.grades[0];
   }, [selectedGrade, product.grades, searchParams]);
 
   const getInitialQuantity = useCallback(() => {
-    if (selectedQuantity && selectedQuantity > 0) return selectedQuantity.toString();
+    if (selectedQuantity && selectedQuantity > 0)
+      return selectedQuantity.toString();
     const urlQty = searchParams.get("qty");
     if (urlQty && parseInt(urlQty) > 0) return urlQty;
     return product.minimumOrder.quantity.toString();
@@ -65,7 +71,7 @@ export function QuoteRequestForm({ product, selectedGrade, selectedQuantity }: Q
 
   // Update form when URL params or props change
   useEffect(() => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       grade: getInitialGrade(),
       quantity: getInitialQuantity(),

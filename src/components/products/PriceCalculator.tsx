@@ -13,20 +13,27 @@ type PriceCalculatorProps = {
   children?: ReactNode;
 };
 
-export function PriceCalculator({ product, onConfigChange, children }: PriceCalculatorProps) {
+export function PriceCalculator({
+  product,
+  onConfigChange,
+  children,
+}: PriceCalculatorProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
   // Initialize from URL params or defaults
   const initialGrade = searchParams.get("grade") || product.grades[0];
-  const initialQuantity = parseInt(searchParams.get("qty") || "") || product.minimumOrder.quantity;
+  const initialQuantity =
+    parseInt(searchParams.get("qty") || "") || product.minimumOrder.quantity;
 
   const [quantity, setQuantity] = useState(
-    product.grades.includes(initialGrade) ? initialQuantity : product.minimumOrder.quantity
+    product.grades.includes(initialGrade)
+      ? initialQuantity
+      : product.minimumOrder.quantity,
   );
   const [selectedGrade, setSelectedGrade] = useState(
-    product.grades.includes(initialGrade) ? initialGrade : product.grades[0]
+    product.grades.includes(initialGrade) ? initialGrade : product.grades[0],
   );
 
   const gradeMultiplier = useMemo(() => {

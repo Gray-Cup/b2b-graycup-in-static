@@ -231,19 +231,21 @@ export async function POST(request: NextRequest) {
     };
 
     // Insert into Supabase
-    const { error: dbError } = await supabase.from("contact_submissions").insert({
-      name: contactData.name,
-      email: contactData.email,
-      company: contactData.company,
-      company_size: contactData.companySize,
-      message: contactData.message,
-    });
+    const { error: dbError } = await supabase
+      .from("contact_submissions")
+      .insert({
+        name: contactData.name,
+        email: contactData.email,
+        company: contactData.company,
+        company_size: contactData.companySize,
+        message: contactData.message,
+      });
 
     if (dbError) {
       console.error("Supabase insert error:", dbError);
       return NextResponse.json(
         { error: "Failed to save submission. Please try again." },
-        { status: 500 }
+        { status: 500 },
       );
     }
 

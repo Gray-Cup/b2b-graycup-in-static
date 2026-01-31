@@ -21,7 +21,7 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
           response: token,
           remoteip: ip,
         }),
-      }
+      },
     );
 
     const result = await response.json();
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     if (!name || !phone || !companyName || !agenda) {
       return NextResponse.json(
         { error: "Name, phone, company name, and agenda are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
       if (!isValidToken) {
         return NextResponse.json(
           { error: "Security verification failed. Please try again." },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
       console.error("Supabase insert error:", dbError);
       return NextResponse.json(
         { error: "Failed to save call request. Please try again." },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
     console.error("Call request API error:", error);
     return NextResponse.json(
       { error: "Internal server error. Please try again later." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

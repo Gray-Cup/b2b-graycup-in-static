@@ -111,7 +111,12 @@ export default function FeedbackPage() {
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-2">
             <Label htmlFor="company">Company Name</Label>
-            <Input id="company" name="company" placeholder="Your company name" required />
+            <Input
+              id="company"
+              name="company"
+              placeholder="Your company name"
+              required
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

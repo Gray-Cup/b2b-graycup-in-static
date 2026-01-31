@@ -86,7 +86,7 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
           response: token,
           remoteip: ip,
         }),
-      }
+      },
     );
 
     const result = await response.json();
@@ -174,7 +174,7 @@ export async function POST(request: NextRequest) {
           headers: {
             "Retry-After": retryAfter.toString(),
           },
-        }
+        },
       );
     }
 
@@ -184,7 +184,7 @@ export async function POST(request: NextRequest) {
     } catch {
       return NextResponse.json(
         { error: "Invalid JSON in request body" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -195,7 +195,7 @@ export async function POST(request: NextRequest) {
           error: "Validation failed",
           details: validation.errors,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -203,7 +203,7 @@ export async function POST(request: NextRequest) {
     if (!isValidToken) {
       return NextResponse.json(
         { error: "Security verification failed. Please try again." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -219,24 +219,22 @@ export async function POST(request: NextRequest) {
       turnstileToken: body.turnstileToken,
     };
 
-    const { error: dbError } = await supabase
-      .from("product_requests")
-      .insert({
-        company: requestData.company,
-        email: requestData.email,
-        name: requestData.name,
-        phone: requestData.phone,
-        category: requestData.category,
-        product_name: requestData.productName,
-        quantity: requestData.quantity || null,
-        details: requestData.details || null,
-      });
+    const { error: dbError } = await supabase.from("product_requests").insert({
+      company: requestData.company,
+      email: requestData.email,
+      name: requestData.name,
+      phone: requestData.phone,
+      category: requestData.category,
+      product_name: requestData.productName,
+      quantity: requestData.quantity || null,
+      details: requestData.details || null,
+    });
 
     if (dbError) {
       console.error("Supabase insert error:", dbError);
       return NextResponse.json(
         { error: "Failed to save submission. Please try again." },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -245,7 +243,7 @@ export async function POST(request: NextRequest) {
         success: true,
         message: "Product request submitted successfully",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Product request API error:", error);
@@ -254,7 +252,7 @@ export async function POST(request: NextRequest) {
       {
         error: "Internal server error. Please try again later.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

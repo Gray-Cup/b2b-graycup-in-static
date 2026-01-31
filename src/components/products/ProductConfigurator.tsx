@@ -20,7 +20,7 @@ function ProductConfiguratorInner({ product }: ProductConfiguratorProps) {
     (newConfig: { grade: string; quantity: number }) => {
       setConfig(newConfig);
     },
-    []
+    [],
   );
 
   return (

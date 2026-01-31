@@ -196,7 +196,17 @@ export default function SampleRequestPage() {
               ))}
             </div>
           </div>
-          <p className="text-sm text-neutral-700">ps: This page is not functioning properly but the api endpoint is open source on our <a className="underline" href="https://github.com/Gray-Cup/b2b-graycup-in-static/tree/main/src/app/api/create-payment">github</a>.</p>
+          <p className="text-sm text-neutral-700">
+            ps: This page is not functioning properly but the api endpoint is
+            open source on our{" "}
+            <a
+              className="underline"
+              href="https://github.com/Gray-Cup/b2b-graycup-in-static/tree/main/src/app/api/create-payment"
+            >
+              github
+            </a>
+            .
+          </p>
 
           <Turnstile
             onVerify={turnstile.handleVerify}
@@ -204,9 +214,7 @@ export default function SampleRequestPage() {
             onExpire={turnstile.handleExpire}
           />
 
-          {error && (
-            <p className="text-red-600 text-sm">{error}</p>
-          )}
+          {error && <p className="text-red-600 text-sm">{error}</p>}
 
           <Button
             type="submit"

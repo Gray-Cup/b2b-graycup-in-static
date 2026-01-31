@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     if (!CASHFREE_CLIENT_ID || !CASHFREE_CLIENT_SECRET) {
       return NextResponse.json(
         { error: "Payment gateway not configured" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     if (!customerName || !customerPhone) {
       return NextResponse.json(
         { error: "Customer name and phone are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
       console.error("Cashfree API error:", data);
       return NextResponse.json(
         { error: data.message || "Failed to create payment link" },
-        { status: response.status }
+        { status: response.status },
       );
     }
 
@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
     console.error("Payment creation error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

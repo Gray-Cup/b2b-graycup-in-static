@@ -33,7 +33,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
           Product Not Found
         </div>
       ),
-      { ...size }
+      { ...size },
     );
   }
 
@@ -172,7 +172,8 @@ export default async function Image({ params }: { params: { slug: string } }) {
                     color: "#1a1a1a",
                   }}
                 >
-                  {formatCurrency(product.priceRange.min)} - {formatCurrency(product.priceRange.max)}/kg
+                  {formatCurrency(product.priceRange.min)} -{" "}
+                  {formatCurrency(product.priceRange.max)}/kg
                 </span>
               </div>
               <div
@@ -234,6 +235,6 @@ export default async function Image({ params }: { params: { slug: string } }) {
         </div>
       </div>
     ),
-    { ...size }
+    { ...size },
   );
 }
