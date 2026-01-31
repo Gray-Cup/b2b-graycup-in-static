@@ -15,6 +15,7 @@ export default function Footer() {
   ];
 
   const resourceLinks = [
+    { href: "https://graycup.org", label: "Company Site" },
     { href: "https://b2b.graycup.in/", label: "B2B Store" },
     { href: "https://graycup.in/", label: "Consumer Store" },
     { href: "https://status.graycup.org/", label: "Status" },
@@ -105,7 +106,7 @@ export default function Footer() {
             reserved.
           </p>
 
-          <nav className="flex items-center gap-x-6">
+          <nav className="flex items-center gap-x-6 text-sm">
             {resourceLinks.map((link) => (
               <Link
                 key={link.href}
