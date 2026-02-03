@@ -2,6 +2,9 @@
 
 Go [Preview](https://.graycup.org)
 
+
+Product Feed for Google at /feeds/products.xml route (https://b2b.graycup.in/feeds/products.xml)
+
 Other Links
 
 - [Fun.graycup.org](https://fun.graycup.org)
