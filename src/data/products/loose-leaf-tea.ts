@@ -30,6 +30,10 @@ export const looseLeafTeaProducts: Product[] = [
     },
     grades: ["SFTGFOP", "FTGFOP", "TGFOP", "FOP", "OP"],
     packaging: ["5kg boxes", "10kg boxes", "25kg bags"],
+    sku: "GC-TEA-LLT-001",
+    brand: "Gray Cup",
+    availability: "in_stock",
+    googleProductCategory: "422",
   },
   {
     slug: "darjeeling-first-flush",
@@ -60,6 +64,10 @@ export const looseLeafTeaProducts: Product[] = [
     },
     grades: ["SFTGFOP1", "FTGFOP1", "TGFOP1"],
     packaging: ["1kg boxes", "5kg boxes", "10kg boxes"],
+    sku: "GC-TEA-DFF-001",
+    brand: "Gray Cup",
+    availability: "in_stock",
+    googleProductCategory: "422",
   },
   {
     slug: "assam-orthodox",
@@ -90,5 +98,9 @@ export const looseLeafTeaProducts: Product[] = [
     },
     grades: ["TGFOP", "GFOP", "FOP", "FBOP"],
     packaging: ["5kg boxes", "10kg boxes", "25kg bags"],
+    sku: "GC-TEA-AO-001",
+    brand: "Gray Cup",
+    availability: "in_stock",
+    googleProductCategory: "422",
   },
 ];

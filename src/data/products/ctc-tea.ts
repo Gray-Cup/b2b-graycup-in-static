@@ -31,6 +31,10 @@ export const ctcTeaProducts: Product[] = [
     },
     grades: ["BOP", "BOPSM", "BP", "PD", "Dust"],
     packaging: ["25kg bags", "50kg bags", "Bulk containers"],
+    sku: "GC-TEA-CTC-001",
+    brand: "Gray Cup",
+    availability: "in_stock",
+    googleProductCategory: "422",
   },
   {
     slug: "ctc-premium-blend",
@@ -62,5 +66,9 @@ export const ctcTeaProducts: Product[] = [
     },
     grades: ["Premium BOP", "Super Fine", "Export Grade"],
     packaging: ["10kg boxes", "25kg bags", "50kg bags"],
+    sku: "GC-TEA-CTC-002",
+    brand: "Gray Cup",
+    availability: "in_stock",
+    googleProductCategory: "422",
   },
 ];

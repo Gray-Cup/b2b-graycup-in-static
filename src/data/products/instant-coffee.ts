@@ -30,6 +30,10 @@ export const instantCoffeeProducts: Product[] = [
     },
     grades: ["Premium", "Standard", "Economy"],
     packaging: ["25kg bags", "10kg boxes", "Bulk drums"],
+    sku: "GC-COF-ISD-001",
+    brand: "Gray Cup",
+    availability: "in_stock",
+    googleProductCategory: "1868",
   },
   {
     slug: "instant-coffee-freeze-dried",
@@ -60,6 +64,10 @@ export const instantCoffeeProducts: Product[] = [
     },
     grades: ["Specialty", "Premium", "Gourmet"],
     packaging: ["5kg boxes", "10kg boxes", "25kg bags"],
+    sku: "GC-COF-IFD-001",
+    brand: "Gray Cup",
+    availability: "in_stock",
+    googleProductCategory: "1868",
   },
   {
     slug: "instant-coffee-chicory-blend",
@@ -90,5 +98,9 @@ export const instantCoffeeProducts: Product[] = [
     },
     grades: ["70:30 Blend", "60:40 Blend", "80:20 Blend"],
     packaging: ["10kg boxes", "25kg bags", "50kg bags"],
+    sku: "GC-COF-ICB-001",
+    brand: "Gray Cup",
+    availability: "in_stock",
+    googleProductCategory: "1868",
   },
 ];

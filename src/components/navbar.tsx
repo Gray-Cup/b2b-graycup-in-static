@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { CurrencySelector } from "@/components/currency-selector";
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,6 +53,7 @@ export function Navbar() {
 
           {/* RIGHT */}
           <div className="flex items-center gap-2">
+            <CurrencySelector />
             <a
               id="store-link"
               href="/contact"

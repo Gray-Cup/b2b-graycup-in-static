@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getProductBySlug, getAllProductSlugs } from "@/data/products";
-import { ProductConfigurator } from "@/components/products";
+import { ProductConfigurator, PriceDisplay } from "@/components/products";
 import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
@@ -11,6 +11,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+import { ProductSchema, BreadcrumbSchema } from "@/components/seo";
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -68,8 +69,17 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
+  const breadcrumbs = [
+    { name: "Home", url: "https://b2b.graycup.in" },
+    { name: "Products", url: "https://b2b.graycup.in/products" },
+    { name: product.name, url: `https://b2b.graycup.in/products/${slug}` },
+  ];
+
   return (
-    <div className="px-4 lg:px-6">
+    <>
+      <ProductSchema product={product} />
+      <BreadcrumbSchema items={breadcrumbs} />
+      <div className="px-4 lg:px-6">
       <div className="min-h-screen py-12">
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
           {/* Breadcrumb */}
@@ -126,10 +136,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     Price Range
                   </p>
                   <p className="font-semibold">
-                    ₹{product.priceRange.min} - ₹{product.priceRange.max}{" "}
-                    <span className="text-sm font-normal text-muted-foreground">
-                      {product.priceRange.unit}
-                    </span>
+                    <PriceDisplay
+                      minPrice={product.priceRange.min}
+                      maxPrice={product.priceRange.max}
+                      unit={product.priceRange.unit}
+                    />
                   </p>
                 </div>
                 <div>
@@ -210,5 +221,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
       </div>
     </div>
+    </>
   );
 }

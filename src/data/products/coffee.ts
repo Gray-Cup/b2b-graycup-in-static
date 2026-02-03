@@ -30,6 +30,10 @@ export const coffeeProducts: Product[] = [
     },
     grades: ["AAA", "AA", "A", "PB", "C"],
     packaging: ["60kg jute bags", "25kg bags", "Bulk containers"],
+    sku: "GC-COF-GCB-001",
+    brand: "Gray Cup",
+    availability: "in_stock",
+    googleProductCategory: "1868",
   },
   {
     slug: "roasted-coffee-beans",
@@ -60,6 +64,10 @@ export const coffeeProducts: Product[] = [
     },
     grades: ["Premium", "Specialty", "Commercial"],
     packaging: ["1kg bags", "5kg bags", "10kg bags"],
+    sku: "GC-COF-RCB-001",
+    brand: "Gray Cup",
+    availability: "in_stock",
+    googleProductCategory: "1868",
   },
   {
     slug: "ground-coffee",
@@ -90,5 +98,9 @@ export const coffeeProducts: Product[] = [
     },
     grades: ["Premium", "Specialty", "Commercial"],
     packaging: ["250g packs", "500g packs", "1kg bags", "5kg bags"],
+    sku: "GC-COF-GND-001",
+    brand: "Gray Cup",
+    availability: "in_stock",
+    googleProductCategory: "1868",
   },
 ];
