@@ -1,4 +1,4 @@
-export type CurrencyCode = "INR" | "EUR" | "GBP" | "USD" | "AED";
+export type CurrencyCode = "INR" | "EUR" | "GBP" | "USD" | "AED" | "KRW";
 
 export type CurrencyConfig = {
   code: CurrencyCode;
@@ -45,6 +45,13 @@ export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
     rate: 0.044, // 1 INR = 0.044 AED (approx)
     locale: "ar-AE",
   },
+  KRW: {
+    code: "KRW",
+    symbol: "₩",
+    name: "South Korean Won",
+    rate: 16.2, // 1 INR = 16.2 KRW (approx)
+    locale: "ko-KR",
+  },
 };
 
 // Map countries to currencies
@@ -75,7 +82,8 @@ export const COUNTRY_CURRENCY_MAP: Record<string, CurrencyCode> = {
   PE: "USD",
   // East Asia (USD)
   JP: "USD",
-  KR: "USD",
+  // South Korea (KRW)
+  KR: "KRW",
   CN: "USD",
   HK: "USD",
   TW: "USD",
@@ -107,8 +115,8 @@ export function formatPrice(
   const formatted = new Intl.NumberFormat(config.locale, {
     style: "currency",
     currency: config.code,
-    minimumFractionDigits: currency === "INR" ? 0 : 2,
-    maximumFractionDigits: currency === "INR" ? 0 : 2,
+    minimumFractionDigits: currency === "INR" || currency === "KRW" ? 0 : 2,
+    maximumFractionDigits: currency === "INR" || currency === "KRW" ? 0 : 2,
   }).format(price);
 
   return formatted;
@@ -123,8 +131,8 @@ export function formatPriceRange(
   const maxConverted = convertPrice(maxINR, currency);
   const config = CURRENCIES[currency];
 
-  if (currency === "INR") {
-    return `${config.symbol}${minConverted} - ${config.symbol}${maxConverted}`;
+  if (currency === "INR" || currency === "KRW") {
+    return `${config.symbol}${Math.round(minConverted)} - ${config.symbol}${Math.round(maxConverted)}`;
   }
 
   return `${config.symbol}${minConverted.toFixed(2)} - ${config.symbol}${maxConverted.toFixed(2)}`;

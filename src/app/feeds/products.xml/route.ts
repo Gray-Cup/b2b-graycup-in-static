@@ -28,10 +28,12 @@ function generateProductItem(product: Product, baseUrl: string): string {
     ? product.image
     : `${baseUrl}${product.image}`;
 
+  const gradesText = product.grades.length > 0 ? ` Available grades: ${product.grades.join(", ")}.` : "";
+
   return `<item>
       <g:id>${escapeXml(product.sku)}</g:id>
       <g:title>${escapeXml(product.name)} - Wholesale ${product.category}</g:title>
-      <g:description>${escapeXml(product.description)}</g:description>
+      <g:description>${escapeXml(product.description + gradesText)}</g:description>
       <g:link>${productUrl}</g:link>
       <g:image_link>${imageUrl}</g:image_link>
       <g:availability>${mapFeedAvailability(product.availability)}</g:availability>
@@ -44,10 +46,31 @@ function generateProductItem(product: Product, baseUrl: string): string {
       <g:identifier_exists>no</g:identifier_exists>
       <g:unit_pricing_measure>1 kg</g:unit_pricing_measure>
       <g:unit_pricing_base_measure>1 kg</g:unit_pricing_base_measure>
+      <g:shipping>
+        <g:country>IN</g:country>
+        <g:service>Standard Freight</g:service>
+        <g:price>0 INR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>US</g:country>
+        <g:service>International Freight</g:service>
+        <g:price>Contact for quote</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>GB</g:country>
+        <g:service>International Freight</g:service>
+        <g:price>Contact for quote</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>AE</g:country>
+        <g:service>International Freight</g:service>
+        <g:price>Contact for quote</g:price>
+      </g:shipping>
       <g:custom_label_0>B2B</g:custom_label_0>
       <g:custom_label_1>${escapeXml(product.category)}</g:custom_label_1>
       <g:custom_label_2>MOQ_${product.minimumOrder.quantity}${product.minimumOrder.unit}</g:custom_label_2>
       <g:custom_label_3>${escapeXml(product.grades[0] || "Standard")}</g:custom_label_3>
+      <g:custom_label_4>${escapeXml(product.grades.join(", "))}</g:custom_label_4>
     </item>`;
 }
 

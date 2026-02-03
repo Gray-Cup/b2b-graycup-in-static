@@ -6,16 +6,16 @@ export const coffeeProducts: Product[] = [
     name: "Green Coffee Beans",
     image: "/products/green-coffee-beans.png",
     description:
-      "Unroasted green coffee beans with potential health benefits and perfect for custom roasting profiles.",
+      "Unroasted green coffee beans perfect for custom roasting profiles and specialty coffee applications.",
     longDescription:
-      "Our green coffee beans are sourced directly from premium estates across South India. These unroasted beans offer roasters complete control over the final flavor profile. With high chlorogenic acid content and extended shelf life, green beans are ideal for roasteries seeking consistent, traceable coffee origins.",
+      "Our green coffee beans are sourced directly from premium estates across South India. These unroasted beans offer roasters complete control over the final flavor profile. With extended shelf life and consistent quality, green beans are ideal for roasteries seeking traceable coffee origins.",
     details: [
-      "High chlorogenic acid content",
+      "Premium unroasted beans",
       "Customizable roast levels",
       "Fresh and natural",
-      "Rich in antioxidants",
       "Extended shelf stability",
       "Single origin available",
+      "Traceable sourcing",
     ],
     locations: ["Coorg", "Chikmagalur", "Wayanad", "Araku Valley"],
     category: "Coffee",
