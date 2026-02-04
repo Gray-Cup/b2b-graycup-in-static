@@ -8,10 +8,9 @@ import { UserJotWidget } from "@/components/userjot-widget";
 import Script from "next/script";
 import IntercomChat from "@/components/IntercomChat";
 import { WhatsappWidget } from "@/components/whatsapp-widget";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Floating } from "@/components/floating";
 import { OrganizationSchema } from "@/components/seo";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -103,6 +102,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <meta name="p:domain_verify" content="263c83126f8d79bccabc00711d8d80c6" />
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-2X266LTV9Z"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-2X266LTV9Z');
+        `}
+      </Script>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
@@ -113,8 +124,8 @@ export default function RootLayout({
           fontPublicSans.variable,
         )}
       >
+
         <OrganizationSchema />
-        <Analytics />
         <SpeedInsights />
         <RootProviders>{children}</RootProviders>
         {/* <UserJotWidget /> */}
