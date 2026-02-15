@@ -100,7 +100,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-white">
       <meta name="p:domain_verify" content="263c83126f8d79bccabc00711d8d80c6" />
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-2X266LTV9Z"
