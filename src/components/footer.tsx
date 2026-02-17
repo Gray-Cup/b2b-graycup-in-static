@@ -87,7 +87,7 @@ export default function Footer() {
 
           <p>
             Food Safety and Standards Authority of India (FSSAI) License:{" "}
-            <span className="whitespace-nowrap">processing..</span>. All food
+            <span className="whitespace-nowrap">23326008000195</span>. All food
             products are handled, packaged, and supplied in compliance with
             FSSAI regulations and food safety standards.
           </p>
