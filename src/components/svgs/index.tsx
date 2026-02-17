@@ -3,7 +3,7 @@ import { ThinksAndCodes } from "./thinks-and-codes";
 import { PullRequest } from "./pull-request";
 import { CustomerHero } from "./customer-hero";
 
-export { CustomerReports, ThinksAndCodes, PullRequest, CustomerHero };
+;
 
 // Pointers
 import { CreateAgent } from "./pointers/create-agent";
@@ -18,14 +18,14 @@ import { ProductPrBottomLeft } from "./pointers/product-pr-bottom-left";
 import { CoffeeCup } from "./pointers/coffee-cup";
 
 export {
-  CreateAgent,
-  IDEAgent,
-  Forms,
-  Questions,
-  ToDo,
-  ProductPr,
-  ProductIssue,
-  CustomerCalls,
-  ProductPrBottomLeft,
+  
+  
+  
+  
+  
+  
+  
+  
+  
   CoffeeCup,
 };
