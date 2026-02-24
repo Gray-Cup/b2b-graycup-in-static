@@ -38,9 +38,9 @@ export async function POST(request: NextRequest) {
       .toString(36)
       .substring(2, 7)}`;
 
-    // Set expiry to 1 year from now
+    // Set expiry to 10 minutes from now
     const expiryTime = new Date();
-    expiryTime.setFullYear(expiryTime.getFullYear() + 1);
+    expiryTime.setMinutes(expiryTime.getMinutes() + 10);
 
     const origin = request.headers.get("origin") || "https://b2b.graycup.in";
 
