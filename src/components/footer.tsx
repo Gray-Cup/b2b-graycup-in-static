@@ -65,7 +65,7 @@ export default function Footer() {
 
           <p>
             GST Registration Number:{" "}
-            <span className="whitespace-nowrap">07AAMCG4985H1Z2</span>. Product
+            <span className="whitespace-nowrap">06AAMCG4985H1Z4</span>. Product
             availability, pricing, and specifications are subject to change
             without notice.
           </p>

@@ -51,7 +51,11 @@ export default function AboutPage() {
             <br />
             <span className="font-semibold">CIN</span>: U47211DL2025PTC457808
             <br />
-            <span className="font-semibold">GST</span>: 07AAMCG4985H1Z2
+            <span className="font-semibold">GST</span>: 06AAMCG4985H1Z4
+            <br />
+            <span className="font-semibold">Registered Address</span>: FF122,
+            Rodeo Drive Mall, GT Road, TDI City, Kundli, Sonipat, Haryana,
+            131030
             <br />
             <span className="font-semibold">UPI ID</span>: graycup@kotak
           </p>
