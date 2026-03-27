@@ -20,8 +20,8 @@ export const instantCoffeeProducts: Product[] = [
     locations: ["Chikmagalur", "Coorg", "Wayanad"],
     category: "Coffee",
     priceRange: {
-      min: 300,
-      max: 900,
+      min: 1200,
+      max: 1600,
       unit: "per kg",
     },
     minimumOrder: {
@@ -54,8 +54,8 @@ export const instantCoffeeProducts: Product[] = [
     locations: ["Coorg", "Chikmagalur", "Araku Valley"],
     category: "Coffee",
     priceRange: {
-      min: 600,
-      max: 1800,
+      min: 1600,
+      max: 2400,
       unit: "per kg",
     },
     minimumOrder: {
@@ -88,8 +88,8 @@ export const instantCoffeeProducts: Product[] = [
     locations: ["Chikmagalur", "Coorg", "Salem"],
     category: "Coffee",
     priceRange: {
-      min: 250,
-      max: 700,
+      min: 1000,
+      max: 1900,
       unit: "per kg",
     },
     minimumOrder: {

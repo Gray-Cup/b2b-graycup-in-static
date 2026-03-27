@@ -21,8 +21,8 @@ export const ctcTeaProducts: Product[] = [
     category: "Tea",
     categoryTwo: "Single Origin",
     priceRange: {
-      min: 150,
-      max: 450,
+      min: 350,
+      max: 950,
       unit: "per kg",
     },
     minimumOrder: {
@@ -56,8 +56,8 @@ export const ctcTeaProducts: Product[] = [
     category: "Tea",
     categoryTwo: "Blend",
     priceRange: {
-      min: 200,
-      max: 550,
+      min: 450,
+      max: 750,
       unit: "per kg",
     },
     minimumOrder: {

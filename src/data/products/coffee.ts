@@ -20,8 +20,8 @@ export const coffeeProducts: Product[] = [
     locations: ["Coorg", "Chikmagalur", "Wayanad", "Araku Valley"],
     category: "Coffee",
     priceRange: {
-      min: 200,
-      max: 800,
+      min: 900,
+      max: 1500,
       unit: "per kg",
     },
     minimumOrder: {
@@ -54,8 +54,8 @@ export const coffeeProducts: Product[] = [
     locations: ["Chikmagalur", "Coorg", "Wayanad", "Bababudangiri"],
     category: "Coffee",
     priceRange: {
-      min: 350,
-      max: 1200,
+      min: 1600,
+      max: 2800,
       unit: "per kg",
     },
     minimumOrder: {
@@ -88,8 +88,8 @@ export const coffeeProducts: Product[] = [
     locations: ["Wayanad", "Chikmagalur", "Coorg", "Araku Valley"],
     category: "Coffee",
     priceRange: {
-      min: 400,
-      max: 1400,
+      min: 1500,
+      max: 2800,
       unit: "per kg",
     },
     minimumOrder: {

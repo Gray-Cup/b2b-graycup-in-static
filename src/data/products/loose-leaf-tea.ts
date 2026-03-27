@@ -20,7 +20,7 @@ export const looseLeafTeaProducts: Product[] = [
     locations: ["Darjeeling", "Assam", "Kangra", "Munnar"],
     category: "Tea",
     priceRange: {
-      min: 300,
+      min: 600,
       max: 2500,
       unit: "per kg",
     },
@@ -54,7 +54,7 @@ export const looseLeafTeaProducts: Product[] = [
     locations: ["Darjeeling"],
     category: "Tea",
     priceRange: {
-      min: 800,
+      min: 1100,
       max: 3500,
       unit: "per kg",
     },
@@ -88,7 +88,7 @@ export const looseLeafTeaProducts: Product[] = [
     locations: ["Assam", "Upper Assam", "Dibrugarh"],
     category: "Tea",
     priceRange: {
-      min: 500,
+      min: 900,
       max: 2000,
       unit: "per kg",
     },
