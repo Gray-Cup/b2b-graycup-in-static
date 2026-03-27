@@ -10,7 +10,6 @@ import IntercomChat from "@/components/IntercomChat";
 import { WhatsappWidget } from "@/components/whatsapp-widget";
 import { Floating } from "@/components/floating";
 import { OrganizationSchema } from "@/components/seo";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -126,7 +125,6 @@ export default function RootLayout({
       >
 
         <OrganizationSchema />
-        <SpeedInsights />
         <RootProviders>{children}</RootProviders>
         {/* <UserJotWidget /> */}
         <WhatsappWidget />

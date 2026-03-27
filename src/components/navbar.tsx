@@ -38,6 +38,7 @@ export function Navbar() {
                 ["Products", "/products"],
                 ["Sample Request", "/sample-request"],
                 ["New Product Request", "/new-product-request"],
+                ["White Label", "/white-label"],
                 ["Feedback", "/feedback"],
               ].map(([label, href]) => (
                 <Link
@@ -133,6 +134,7 @@ export function Navbar() {
               ["Products", "/products"],
               ["Sample Request", "/sample-request"],
               ["New Product Request", "/new-product-request"],
+              ["White Label", "/white-label"],
               ["Feedback", "/feedback"],
             ].map(([label, href]) => (
               <Link
