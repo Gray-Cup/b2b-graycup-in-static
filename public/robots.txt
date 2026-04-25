@@ -6,4 +6,4 @@ Allow: /
 Host: https://b2b.graycup.in
 
 # Sitemaps
-Sitemap: https://b2b.graycup.in/sitemap.xml
+Sitemap: https://b2b.graycup.in/sitemap-0.xml
