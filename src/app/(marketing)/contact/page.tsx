@@ -47,9 +47,7 @@ export default function ContactPage() {
             <p className="text-sm text-black underline underline-offset-4 hover:text-neutral-600">
               +91 98765 43210
             </p>
-            <p className="text-sm text-black underline underline-offset-4 hover:text-neutral-600 pt-4">
-              +91 98765 43240
-            </p>
+
           </div>
 
           {/* Sales & Purchases */}
