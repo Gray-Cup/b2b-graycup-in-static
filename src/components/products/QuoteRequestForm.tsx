@@ -225,7 +225,7 @@ export function QuoteRequestForm({
                     type="tel"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="+91 98765 43210"
+                    placeholder="+91 8527914317"
                   />
                 </div>
               </div>
