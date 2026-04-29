@@ -29,7 +29,7 @@ export default function ContactPage() {
             </p>
             <Button size="minor" variant="black" asChild className="mt-auto">
               <a
-                href="https://cal.com/graycup"
+                href="https://cal.com/arjunaditya/30min?user=arjunaditya"
                 target="_blank"
                 rel="noopener noreferrer"
               >
