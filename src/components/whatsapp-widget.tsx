@@ -1,7 +1,7 @@
 export function WhatsappWidget() {
   return (
     <a
-      href="https://whatsapp.com/"
+      href="https://wa.me/918527914317?text=Heyya%2C%20I%20found%20your%20number%20on%20B2b%20Gray%20Cup%20Site%20and%20would%20love%20to%20enquire"
       target="_blank"
       className="fixed bottom-10 rounded-full scale-121 cursor-pointer duration-200 right-8"
     >
