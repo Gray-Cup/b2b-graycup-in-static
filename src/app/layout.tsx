@@ -74,6 +74,7 @@ export const metadata: Metadata = {
     title: "B2B Gray Cup",
     description:
       "We sell indian tea, coffee and matcha to people who care about quality.",
+    siteName: "B2B Gray Cup",
     images: [
       {
         url: "https://b2b.graycup.in/og.png",
@@ -125,6 +126,19 @@ export default function RootLayout({
       >
 
         <OrganizationSchema />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://b2b.graycup.in/#website",
+              name: "B2B Gray Cup",
+              alternateName: "Gray Cup B2B",
+              url: "https://b2b.graycup.in",
+            }),
+          }}
+        />
         <RootProviders>{children}</RootProviders>
         {/* <UserJotWidget /> */}
         <WhatsappWidget />
