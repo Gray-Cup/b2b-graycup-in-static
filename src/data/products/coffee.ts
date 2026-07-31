@@ -221,62 +221,6 @@ export const coffeeProducts: Product[] = [
     availability: "in_stock",
     googleProductCategory: "1868",
   },
-  {
-    slug: "tirap-robusta-washed",
-    name: "Tirap Robusta Washed Green Coffee",
-    image: "/products/north-east/arunachal-pradesh/tirap/tirap-robusta-naturals.webp",
-    description:
-      "Fully washed Robusta green coffee from Tirap, Arunachal Pradesh — clean, low-defect, and traceable to Naga and Wancho tribal farms.",
-    longDescription:
-      "This washed-process lot from Tirap is depulped and fermented at small community stations before drying, removing the mucilage entirely for a cleaner, more consistent bean than the region's more common natural-process lots. The result is a Robusta with a straightforward, low-defect cup — bold body, low acidity.",
-    details: [
-      "CxR (Congensis × Robusta) cultivar",
-      "Fully washed process",
-      "Himalayan foothill farms at 300m",
-      "Clean, low-defect cup",
-      "Tribal Naga and Wancho farming communities",
-      "Arunachal Pradesh single origin",
-    ],
-    locations: ["Tirap, Arunachal Pradesh"],
-    category: "Coffee",
-    categoryTwo: "Single Origin",
-    priceRange: { min: 730, max: 1750, unit: "per kg" },
-    minimumOrder: { quantity: 10, unit: "kg" },
-    grades: ["Grade 1", "Grade 2"],
-    packaging: ["60kg GrainPro jute bags", "30kg bags", "Bulk containers"],
-    sku: "GC-COF-TRP-WSH-001",
-    brand: "Gray Cup",
-    availability: "in_stock",
-    googleProductCategory: "1868",
-  },
-  {
-    slug: "tirap-robusta-hsd",
-    name: "Tirap Robusta Honey Sun-Dried Green Coffee",
-    image: "/products/north-east/arunachal-pradesh/tirap/tirap-robusta-naturals.webp",
-    description:
-      "Honey sun-dried Robusta green coffee from Tirap, Arunachal Pradesh — mucilage-on drying for extra sweetness and body.",
-    longDescription:
-      "Honey Sun-Dried Tirap Robusta is pulped and then dried with the mucilage intact on raised platforms, capturing more of the cherry's natural sugars than a fully washed lot without the heavier ferment character of a whole-cherry natural. Grown by Naga and Wancho tribal farming families.",
-    details: [
-      "Honey (mucilage-on) sun-dried process",
-      "CxR (Congensis × Robusta) cultivar",
-      "Himalayan foothill farms at 300m",
-      "Rounder, sweeter body than washed lots",
-      "Tribal Naga and Wancho farming communities",
-      "Arunachal Pradesh single origin",
-    ],
-    locations: ["Tirap, Arunachal Pradesh"],
-    category: "Coffee",
-    categoryTwo: "Single Origin",
-    priceRange: { min: 730, max: 1750, unit: "per kg" },
-    minimumOrder: { quantity: 10, unit: "kg" },
-    grades: ["Gold Honey", "Red Honey"],
-    packaging: ["60kg GrainPro jute bags", "30kg bags", "Bulk containers"],
-    sku: "GC-COF-TRP-HSD-001",
-    brand: "Gray Cup",
-    availability: "in_stock",
-    googleProductCategory: "1868",
-  },
 
   // ── NORTH EAST INDIA — HALFLONG, ASSAM ──────────────────────────────────────
 
