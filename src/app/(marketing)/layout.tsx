@@ -11,7 +11,9 @@ export default function MarketingLayout({
   return (
     <div className="relative flex min-h-screen flex-col">
       {/* Sticky Header Group */}
-      <div className="sticky top-0 z-50">
+      {/* bg-white here so iOS Safari 26 samples a solid color off this sticky
+          element to tint the status bar */}
+      <div className="sticky top-0 z-50 bg-white">
         <CountryBanner />
         <Navbar />
       </div>

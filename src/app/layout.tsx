@@ -1,5 +1,5 @@
 import React from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins, Inter, Instrument_Sans, Public_Sans } from "next/font/google";
 import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
@@ -94,6 +94,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+  colorScheme: "light",
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -124,7 +130,13 @@ export default function RootLayout({
           fontPublicSans.variable,
         )}
       >
-
+        {/* iOS Safari 26 tints the status bar from the background-color of a
+            fixed/sticky element within 4px of the top edge (theme-color is
+            ignored). Give it a guaranteed solid-white one on every page. */}
+        <div
+          aria-hidden
+          className="pointer-events-none fixed inset-x-0 top-0 z-0 h-2 bg-white"
+        />
         <OrganizationSchema />
         <script
           type="application/ld+json"
