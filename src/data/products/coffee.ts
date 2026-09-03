@@ -467,7 +467,7 @@ export const coffeeProducts: Product[] = [
     locations: ["Attikan Estate, Biligiri Ranjan Hills, Karnataka"],
     category: "Coffee",
     categoryTwo: "Premium",
-    priceRange: { min: 1100, max: 1400, unit: "per kg" },
+    priceRange: { min: 1150, max: 1400, unit: "per kg" },
     minimumOrder: { quantity: 1, unit: "kg" },
     grades: ["AA", "A", "AB", "PB (Peaberry)"],
     packaging: ["60kg GrainPro jute bags", "30kg bags", "Bulk containers"],
