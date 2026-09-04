@@ -22,10 +22,8 @@
   "observability": {
     "enabled": true
   },
+  "migrations_dir": "./migrations",
   "vars": {
     "SITE_URL": "https://b2b.graycup.in"
-  },
-  "triggers": {
-    "crons": ["0 8 * * *"]
   }
 }
