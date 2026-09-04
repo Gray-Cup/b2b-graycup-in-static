@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "@/lib/next-link-compat";
 import { Button } from "@/components/ui/button";
 import { CurrencySelector } from "@/components/currency-selector";
 

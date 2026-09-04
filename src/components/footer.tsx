@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/lib/next-link-compat";
 
 export default function Footer() {
   const mainLinks = [
