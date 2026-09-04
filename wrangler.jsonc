@@ -1,0 +1,31 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": "./workers/app.ts",
+  "name": "b2b-graycup-in",
+  "compatibility_date": "2026-08-08",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "nodejs_compat_populate_process_env",
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": "./build/client",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "graycup-orders",
+      "database_id": "c761625d-96b2-40a9-b1a3-4d9a58cae436"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "SITE_URL": "https://b2b.graycup.in"
+  },
+  "triggers": {
+    "crons": ["0 8 * * *"]
+  }
+}
